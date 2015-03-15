@@ -1,0 +1,195 @@
+
+
+body{
+	text-align:center;
+    padding:0 auto;
+    margin:0 auto;
+	font: normal 100% Helvetica, Arial, sans-serif;
+    font-size:12px;
+}
+
+.banner{
+    width:100%;
+}
+
+.banner img{
+    width:100%;
+}
+
+.main_content{
+    width:80%;
+    margin-top:0%;
+    margin-left:10%;
+}
+
+.movie_info{
+    margin-top:2em;
+    
+}
+
+#title1{
+     
+	color:#ff6f83;
+    font-size:2em;
+    font-weight:bold;
+}
+
+#title2{
+	color:#ff6f83;
+    font-size:1em;
+   
+}
+
+#abstract{
+	font-size:1em;
+    color:#848484;
+    display:block;
+    margin:1.5em 0 1.5em ;
+    text-indent:1em;
+    text-align:left
+}
+
+/**************刮图区*****************/
+
+/**************刮图区*****************/
+
+
+/**************表单区*****************/
+.surface {
+    padding-left: 20px;
+    padding-top: 5px;
+    margin: 0 auto;
+    text-align: left;
+/*  box-shadow: 1px 2px 6px rgba(255,0,0, 0.5);
+ * -moz-box-shadow: 1px 2px 6px rgba(255,0,0, 0.5);
+ * -webkit-box-shadow: 1px 2px 6px rgba(255,0,0, 0.5); */
+
+    border-radius: 10px;
+    border: 1px solid #C8C8C8;
+}
+.surface input {
+    border-style: none;
+    resize: none;
+    height: 40px;
+    outline: none;
+    font: normal 15px Monaco, 'Courier New', monospace;
+    line-height: 20px;
+    overflow: hidden;
+    width:90%;
+	color:#252525;
+	font-weight:bold;
+	font-size:1.5em;
+}
+            
+.surface textarea {
+    border-style: none;
+    resize: none;
+    height: 50px;
+    outline: none;
+    font: normal 15px Monaco, 'Courier New', monospace;
+    line-height: 20px;
+    overflow: hidden;
+    width:90%;
+	color:#252525;
+}
+
+
+/**************表单区*****************/
+
+
+
+/**************活动规则*****************/
+.activity_info{
+    margin-top:3em;
+    text-align:left;
+    color:#393939;
+}
+.activity_info .info_header{
+    color:#329bd9;
+}
+.info_num{
+	float:left;
+}
+.info_detail{
+	font-size:1em;
+}
+.footer img{
+	width:100%;
+}
+/**************活动规则*****************/
+
+
+
+
+/**************中奖区****************/
+.loop {
+    width: 100%;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+
+.loop-content {
+    margin: 0 auto;
+    height: 3em;
+    line-height: 3em;
+    position: relative;
+    overflow: hidden;
+}
+
+.loop-content ul {
+    list-style:none;
+    margin-top:0px;
+    padding: 0;
+    position: absolute;
+    width:100%;
+}
+
+ .loop-content li {
+    height: 3em;
+ 	text-align:center;
+ 	margin-left:1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+	font-size:1.5em;
+} 
+/**************中奖区****************/
+
+
+/**************jqpuzzle****************/
+ 
+.jqp-controls{
+   
+   margin:2% auto 1% auto;
+    
+}
+.jqp-controls span{
+    line-height: 3em;
+	width: 24%;
+	border-width: 10px 16px;
+	border-style: solid;
+	border-radius: 0.3em;
+	margin-right: 1%;
+	font-weight: bold;
+	font-size: 100%;
+}
+
+/**************jqpuzzle****************/
+
+.form_submit{
+    text-align:center;
+	padding-bottom:0.8em;
+}
+.form_submit img{
+	width:45%;
+}
+
+#vlightbox{width:680px;height:355px;margin:0 auto;}
+#vlightbox span{display:block;}
+#vlightbox a{display:block;float:left;width:310px;height:155px;margin:3px 1px;padding:6px;border:solid 1px #b8b8b8;
+background-color:#f4f5f5;opacity:0.87;}
+#vlightbox a img{display:block;border:none;margin:0px;}
+#vlightbox a:hover{opacity:1;}
+#vlightbox a.vlightbox_hidden{display:none;}
+#vlightbox a img{border:medium none;margin:0 auto;width:310px;height:155px;}

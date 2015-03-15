@@ -1,4 +1,4 @@
-<taglib name='Message' />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
@@ -11,11 +11,11 @@
 		<script>
 			$(function(){
 				$('#post').click(function(){
-					//$('form[name="myForm"]').submit();
+					$('form[name="myForm"]').submit();
 				});
 
 				$('img[class="register"]').click(function(){
-					//window.location='__APP__/Register/reg';
+					window.location='__APP__/Register/reg';
 				});
 			});
 		</script>
@@ -63,7 +63,7 @@
 	    <div class="col-sm-6 ">
 
 			<input type='text' name='code'/>
-				
+					<Message:code width='30' height='30'/>
 
 		</div>
 

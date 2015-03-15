@@ -63,7 +63,7 @@
 	    <div class="col-sm-6 ">
 
 			<input type='text' name='code'/>
-					<Message:code width='30' height='30'/>
+					<img src='__APP__/Public/code?w=30&h=30' onclick='this.src=this.src+"?"+Math.random()'/>
 
 		</div>
 

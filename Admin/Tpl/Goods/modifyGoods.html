@@ -1,0 +1,111 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+	<div class="diywap_right">
+
+		<div class="well well-sm">修改商品</div>
+
+
+<script>	
+			window.onload=function(){
+				$("#selectGoodsType").val("<{$data.goodstypeid}>");
+			}
+			
+			$(function(){
+				$('#save').click(function(){
+					$('form[name="myForm"]').submit();
+				});
+			});
+		</script>
+<form class="form-horizontal" action='__APP__/Goods/doUpdate' method="post" name="myForm" enctype='multipart/form-data'/>
+			<input type='hidden' name='id' value="<{$data.id}>"/>
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">ID:</label>
+
+				 <div class="col-sm-4">
+					 <input type='text'  readonly= "true" class="form-control" value='<{$data.id}>'/>
+				 </div>
+
+			</div>
+
+
+			
+
+			<div class="form-group">
+
+				<label for="catename" class="col-sm-2 control-label">奖项标示字段:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catename"  readonly= "true" name="praisefeild"  class="form-control" value="<{$data.praisefeild}>">
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+				<label for="infodesc" class="col-sm-2 control-label">奖项名字:</label>
+
+				 <div class="col-sm-4">
+
+				<input type="catelogo" id="postpic"  name="praisename"  readonly= "true" value="<{$data.praisename}>" class="form-control" >
+
+				</div>
+
+			
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">奖项内容:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catelogo" id="postpic"  name="praisecontent"  readonly= "true" value="<{$data.praisecontent}>" class="form-control" >
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">奖项库存次数:</label>
+
+				 <div class="col-sm-4">
+
+					<input type='catename' name='praisenumber' class="form-control" value="<{$data.praisenumber}>"/>
+
+				 </div>
+
+			</div>
+
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">本奖项的概率:</label>
+
+				 <div class="col-sm-4">
+
+					<input type='catename' name='chance' class="form-control" value="<{$data.chance}>"/>
+
+				 </div>
+
+			</div>
+			
+			
+			<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+
+			</form>
+
+			</div>
+
+			</div>
+	</div>
+
+</body>
+
+</html>

@@ -3,7 +3,7 @@
 			
 			<div class="list-group" id="accordion">
 			
-				<!--<if condition="$Think.session.role eq 'level_1_admin' ">-->
+				
 				 <h4>
 					<a class="list-group-item active navbar-link " data-toggle="collapse"  data-parent="#accordion" href="#collapseOne">
 					商品管理  <span class="glyphicon  glyphicon-arrow-down"></span></a>
@@ -20,13 +20,12 @@
 					if(strstr(__SELF__, 'searchGoods')){echo ' in';}
 					
 					?> ">
-				<a href="__APP__/GoodsType/addGoodsType" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品类别</a>
-				<a href="__APP__/GoodsType/goodsTypeInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品类别列表</a>
-				<a href="__APP__/Goods/addGoods" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品</a>
-				<a href="__APP__/Goods/goodsInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品列表</a>
+				<a href="__APP__/GoodsType/addGoodsType" class="list-group-item">
+					<span class="glyphicon glyphicon-circle-arrow-right"></span> 商品管理
+				</a>			
 				
 				</div>	
-				<!--</if>-->
+				
 
 				<h4>
 				<a class="list-group-item active navbar-link" data-toggle="collapse"  data-parent="#accordion" href="#collapsetwo">用户管理 <span class="glyphicon  glyphicon-arrow-down"></span></a>	

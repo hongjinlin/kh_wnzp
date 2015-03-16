@@ -1,0 +1,73 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+<script>
+			
+			function del()
+			{
+			    if(confirm("确定要删除吗？"))
+			    {
+			        return true;
+			    }
+			    else
+			    {
+			        return false;
+			    }
+			}
+			
+			$(function(){
+			
+				//提交表单
+				$('#search').click(function(){
+					$('form[name="searchGoodsForm"]').submit();
+				});
+			});
+			
+			
+		</script>
+		
+	<div class="diywap_right">
+
+		<div class="well well-sm">奖品列表</div>
+					
+
+		</br>
+		
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>ID</th>
+				<th>奖项标示字段</th>
+				<th>奖项名字</th>
+				<th>奖项内容</th>
+				<th>奖项库存</th>
+				<th>本奖项概率</th>
+				<th>操作</th>
+			</tr>
+			<volist name='data' id='vo'>
+				<tr class="active">
+					<td><{$vo.id}></td>
+					<td><{$vo.praisefeild}></td>
+					<td width="200px"><{$vo.praisename}></td>
+					<td width="250px"><{$vo.praisecontent}></td>
+					<td width="250px"><{$vo.praisenumber}></td>
+					<td width="200px"><{$vo.chance}></td>
+					
+					<td width="100px"><a href="__APP__/Goods/modifyGoods/id/<{$vo.id}>">修改</a></td>
+				</tr>
+			</volist>
+
+		</table>
+		
+		</br>
+		<div style="text-align:center;"><{$page}></div>
+
+			</div>
+
+		
+
+</div>
+
+</body>
+
+</html>

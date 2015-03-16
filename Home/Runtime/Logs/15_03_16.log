@@ -1,5 +1,0 @@
-[ 2015-03-16T09:25:55+08:00 ] 127.0.0.1 /kh_wnzp/
-INFO: [ app_begin ] --START--
-INFO: ReadHtmlCache Behavior ::run [ RunTime:0.004000s ]
-INFO: [ app_begin ] --END-- [ RunTime:0.044002s ]
-

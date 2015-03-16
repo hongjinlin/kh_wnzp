@@ -1,0 +1,105 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+
+		
+
+<div class="pull-left diywap_right">	
+
+<div class="panel panel-info">
+	  <div class="panel-heading">程序版本信息</div>
+	  <div class="panel-body">
+	    
+		 <div class="row">
+		  
+		   <div class="col-md-6">
+				<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">服务器信息</div>
+				 
+
+				  <!-- List group -->
+				<table class="table table-bordered table-hover">
+				<tr class="active">
+					<td>PHP版本:</td>
+					<td><php>echo phpversion();</php></td>
+				</tr>
+				<tr class="warning">
+					<td>操作系统:</td>
+					<td><php>echo PHP_OS;</php></td>
+				</tr>
+				<tr class="success">
+					<td>程序目录:</td>
+					<td><php>echo $_SERVER['DOCUMENT_ROOT'];</php></td>
+				</tr>
+				<tr class="warning">
+					<td>端口号:</td>
+					<td><php>echo $_SERVER['SERVER_PORT'] ;</php></td>
+				</tr>
+				<tr class="active">
+					<td>服务器IP:</td>
+					<td><php>echo  $_SERVER['SERVER_ADDR'] ;</php></td>
+				</tr>
+					
+			</table>
+				</div>
+		  </div>
+		  
+		   <div class="col-md-6">
+				<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">程序信息</div>
+				 
+
+				  <!-- List group -->
+				<table class="table table-bordered table-hover">
+				<tr class="active">
+					<td>程序名称:</td>
+					<td>拼图游戏</td>
+				</tr>
+				<tr class="warning">
+					<td>程序版本:</td>
+					<td>VER1.0</td>
+				</tr>
+				<tr class="success">
+					<td>程序开发者:</td>
+					<td>威虎小王</td>
+				</tr>
+				<tr class="warning">
+					<td>开发者QQ:</td>
+					<td>1599675606</td>
+				</tr>
+				<tr class="active">
+					<td>官方网站:</td>
+					<td><a href="http://www.wayhu.com">www.wayhu.com</a></td>
+				</tr>
+			</table>
+				</div>
+		  </div>
+		  
+		
+		</div>
+	  </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+  
+
+  
+
+</div>
+
+	
+
+	</body>
+
+</html>

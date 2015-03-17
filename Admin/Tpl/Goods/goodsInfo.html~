@@ -53,7 +53,7 @@
 					<td width="250px"><{$vo.praisenumber}></td>
 					<td width="200px"><{$vo.chance}></td>
 					
-					<td width="100px"><a href="">修改</a></td>
+					<td width="100px"><a href="__APP__/Goods/modifyGoods/id/<{$vo.id}>">修改</a></td>
 				</tr>
 			</volist>
 

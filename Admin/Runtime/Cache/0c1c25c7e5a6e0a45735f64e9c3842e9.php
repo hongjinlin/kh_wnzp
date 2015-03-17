@@ -74,7 +74,9 @@
 				<div id="collapsetwo" class="panel-collapse collapse
 					<?php  if(strstr(__SELF__, 'userInfo')){echo ' in';} if(strstr(__SELF__, 'searchUser')){echo ' in';} if(strstr(__SELF__, 'exchangeGift')){echo ' in';} if(strstr(__SELF__, 'scoreInfo')){echo ' in';} if(strstr(__SELF__, 'searchScore')){echo ' in';} if(strstr(__SELF__, 'modifyScore')){echo ' in';} if(strstr(__SELF__, 'exchangeInfo')){echo ' in';} if(strstr(__SELF__, 'searchExchange')){echo ' in';} ?>				
 				">
-				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户及游戏记录查询</a>		
+				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户记录查询</a>
+				<a href="__APP__/User/scoreInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>游戏成绩查询</a>				
+				<a href="__APP__/User/exchangeInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>兑换记录查询</a>	
 				</div>
 
 				<!--角色判断-->
@@ -113,70 +115,104 @@
 		</div>
 	
 
-<script>
-			
-			function del()
-			{
-			    if(confirm("确定要删除吗？"))
-			    {
-			        return true;
-			    }
-			    else
-			    {
-			        return false;
-			    }
-			}
-			
-			$(function(){
-			
-				//提交表单
-				$('#search').click(function(){
-					$('form[name="searchGoodsForm"]').submit();
-				});
-			});
-			
-			
-		</script>
-		
-	<div class="diywap_right">
 
-		<div class="well well-sm">奖品列表</div>
+
+		
+
+<div class="pull-left diywap_right">	
+
+<div class="panel panel-info">
+	  <div class="panel-heading">程序版本信息</div>
+	  <div class="panel-body">
+	    
+		 <div class="row">
+		  
+		   <div class="col-md-6">
+				<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">服务器信息</div>
+				 
+
+				  <!-- List group -->
+				<table class="table table-bordered table-hover">
+				<tr class="active">
+					<td>PHP版本:</td>
+					<td><?php echo phpversion(); ?></td>
+				</tr>
+				<tr class="warning">
+					<td>操作系统:</td>
+					<td><?php echo PHP_OS; ?></td>
+				</tr>
+				<tr class="success">
+					<td>程序目录:</td>
+					<td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
+				</tr>
+				<tr class="warning">
+					<td>端口号:</td>
+					<td><?php echo $_SERVER['SERVER_PORT'] ; ?></td>
+				</tr>
+				<tr class="active">
+					<td>服务器IP:</td>
+					<td><?php echo $_SERVER['SERVER_ADDR'] ; ?></td>
+				</tr>
 					
+			</table>
+				</div>
+		  </div>
+		  
+		   <div class="col-md-6">
+				<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">程序信息</div>
+				 
 
-		</br>
+				  <!-- List group -->
+				<table class="table table-bordered table-hover">
+				<tr class="active">
+					<td>程序名称:</td>
+					<td>拼图游戏</td>
+				</tr>
+				<tr class="warning">
+					<td>程序版本:</td>
+					<td>VER1.0</td>
+				</tr>
+				<tr class="success">
+					<td>程序开发者:</td>
+					<td>威虎小王</td>
+				</tr>
+				<tr class="warning">
+					<td>开发者QQ:</td>
+					<td>1599675606</td>
+				</tr>
+				<tr class="active">
+					<td>官方网站:</td>
+					<td><a href="http://www.wayhu.com">www.wayhu.com</a></td>
+				</tr>
+			</table>
+				</div>
+		  </div>
+		  
 		
-		<table class="table table-hover table-bordered">
-			<tr>
-				<th>ID</th>
-				<th>奖项标示字段</th>
-				<th>奖项名字</th>
-				<th>奖项内容</th>
-				<th>奖项库存</th>
-				<th>本奖项概率<br/>(注意：所有奖项概率和为100)</th>
-				<th>操作</th>
-			</tr>
-			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="active">
-					<td><?php echo ($vo["id"]); ?></td>
-					<td><?php echo ($vo["praisefeild"]); ?></td>
-					<td width="200px"><?php echo ($vo["praisename"]); ?></td>
-					<td width="250px"><?php echo ($vo["praisecontent"]); ?></td>
-					<td width="250px"><?php echo ($vo["praisenumber"]); ?></td>
-					<td width="200px"><?php echo ($vo["chance"]); ?></td>
-					
-					<td width="100px"><a href="__APP__/Goods/modifyGoods/id/<?php echo ($vo["id"]); ?>">修改</a></td>
-				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+		</div>
+	  </div>
+	</div>
+</div>
 
-		</table>
-		
-		</br>
-		<div style="text-align:center;"><?php echo ($page); ?></div>
 
-			</div>
 
-		
+
+
+
+
+
+  
+
+  
 
 </div>
 
-</body>
+	
+
+	</body>
 
 </html>

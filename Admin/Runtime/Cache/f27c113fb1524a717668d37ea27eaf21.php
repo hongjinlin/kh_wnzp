@@ -113,57 +113,62 @@
 		</div>
 	
 
+
 <script>
-			
-			function del()
-			{
-			    if(confirm("确定要删除吗？"))
-			    {
-			        return true;
-			    }
-			    else
-			    {
-			        return false;
-			    }
-			}
-			
-			$(function(){
-			
+				$(function(){
+				
 				//提交表单
-				$('#search').click(function(){
-					$('form[name="searchGoodsForm"]').submit();
+				$('img.search').click(function(){
+					$('form[name="searchUserForm"]').submit();
+				});
+				
+				$('#exportData').click(function(){
+					
+					var username='blank';
+					var userphone='blank';
+					if($("#username").val()!=''){
+						username =$("#username").val();
+					}
+					
+					if($("#userphone").val()!=''){
+						userphone =$("#userphone").val();
+					}
+
+					window.location.href = "__APP__/User/exportUserData/username/"+username+"/userphone/"+userphone;
 				});
 			});
-			
-			
-		</script>
-		
+		</script>		
 	<div class="diywap_right">
 
-		<div class="well well-sm">奖品列表</div>
+		<div class="well well-sm">用户记录查询</div>
 					
-
+					<form  name="searchUserForm" action="__APP__/User/searchUser"  method="get" >
+		<div>
+		
+			用户手机: <input type='text' name='userphone' id="userphone" value="<?php echo ($_GET['userphone']); ?>"/>
+			 		 
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+			<?php if($_SESSION['role']== 'level_1_admin' ): ?><div class="btn btn-primary btn-lg" id="exportData">导出数据</div><?php endif; ?>
+		</div>
+		</form>
 		</br>
 		
 		<table class="table table-hover table-bordered">
 			<tr>
-				<th>ID</th>
-				<th>奖项标示字段</th>
-				<th>奖项名字</th>
-				<th>奖项内容</th>
-				<th>奖项库存</th>
-				<th>本奖项概率<br/>(注意：所有奖项概率和为100)</th>
-				<th>操作</th>
+				<th>用户ID</th>
+				<th>用户手机</th>
+				<th>游戏次数</th>
+				<th>获得奖项</th>
+				<th>对应奖品</th>
+				<th>注册时间</th>
 			</tr>
 			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="active">
-					<td><?php echo ($vo["id"]); ?></td>
-					<td><?php echo ($vo["praisefeild"]); ?></td>
-					<td width="200px"><?php echo ($vo["praisename"]); ?></td>
-					<td width="250px"><?php echo ($vo["praisecontent"]); ?></td>
-					<td width="250px"><?php echo ($vo["praisenumber"]); ?></td>
-					<td width="200px"><?php echo ($vo["chance"]); ?></td>
-					
-					<td width="100px"><a href="__APP__/Goods/modifyGoods/id/<?php echo ($vo["id"]); ?>">修改</a></td>
+					<td><?php echo ($vo["uid"]); ?></td>
+					<td><?php echo ($vo["userphone"]); ?></td>
+					<td><?php echo ($vo["prizetimes"]); ?></td>
+					<td><?php echo ($vo["praisename"]); ?></td>
+					<td><?php echo ($vo["praisecontent"]); ?></td>
+					<td><?php echo ($vo["joindate"]); ?></td>
 				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 
 		</table>

@@ -1,0 +1,49 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+	<script>
+			
+			$(function(){
+				$('#save').click(function(){
+					$('form[name="myForm"]').submit();
+				});
+			});
+		</script>
+	<div class="diywap_right">
+		<form action='__APP__/Config/updateConfig' method='post' name='myForm' enctype='multipart/form-data'>
+		<div class="well well-sm"><{$configTitle}></div>
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>参数说明</th>
+				<th>参数值</th>			
+				<th>变量名</th>			
+			</tr>
+			
+			
+			<volist name="data" id="vo">
+			
+		    
+		    	<tr class="active">
+					<td><{$vo.info}></td>
+					<td><input type='hidden' name="data[<{$i}>][id]" value="<{$vo.id}>"/>
+						<input type='text'  style="width:550px"  name="data[<{$i}>][value]" value="<{$vo.value}>"/></td>
+					<td><{$vo.varname}></td>
+				</tr>
+		   
+				<tr class="active">
+					<td><{$vo.info}></td>		
+			</volist>
+		
+		</table>
+		
+		<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+
+		</form>
+			</div>
+	
+	</div>
+
+</body>
+
+</html>

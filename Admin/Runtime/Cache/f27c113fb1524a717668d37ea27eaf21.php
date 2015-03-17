@@ -79,7 +79,8 @@
 
 				<!--角色判断-->
 
-				<?php if($_SESSION['role']== 'level_1_admin' ): ?><h4>
+				
+				<h4>
 				<a class="list-group-item active navbar-link" data-toggle="collapse"  data-parent="#accordion" href="#collapsethree">配置管理 <span class="glyphicon  glyphicon-arrow-down"></span></a>	
 					</h4>
 				<div id="collapsethree" class="panel-collapse collapse
@@ -100,7 +101,8 @@
 				">
 				<a href="__APP__/Admin/addAdmin" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加管理员</a>					
 				<a href="__APP__/Admin/adminInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>管理员列表</a>
-					</div><?php endif; ?>	
+					</div>
+					
 				
 
 				<a class="list-group-item active navbar-link " href="http://www.wayhu.com">官方网站：www.wayhu.com</a>

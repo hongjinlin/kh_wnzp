@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.7
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- 主机: localhost
--- 生成日期: 2015 年 03 月 05 日 14:50
--- 服务器版本: 5.1.63
--- PHP 版本: 5.2.17p1
+-- Host: 127.0.0.1
+-- Generation Time: 2015-03-17 14:45:14
+-- 服务器版本： 5.6.17
+-- PHP Version: 5.5.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,8 +17,29 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `kehu_wnzp`
+-- Database: `kehu_wnzp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `magic_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `magic_admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` char(30) NOT NULL,
+  `password` char(32) NOT NULL,
+  `role` char(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- 转存表中的数据 `magic_admin`
+--
+
+INSERT INTO `magic_admin` (`id`, `username`, `password`, `role`) VALUES
+(1, 'admin', 'admin', '');
 
 -- --------------------------------------------------------
 
@@ -41,14 +63,36 @@ CREATE TABLE IF NOT EXISTS `magic_config` (
 --
 
 INSERT INTO `magic_config` (`id`, `praisefeild`, `praisename`, `praisecontent`, `praisenumber`, `chance`) VALUES
-(1, 'first', '一等奖', 'ABS旅行箱一个', 0, 0),
-(2, 'second', '二等奖', '双耳汤锅一个', 0, 0),
-(3, 'Third', '三等奖', '纪念邮册一本', 0, 4),
+(1, 'first', '一等奖', 'ABS旅行箱一个', 2, 2),
+(2, 'second', '二等奖', '双耳汤锅一个', 1, 9),
+(3, 'Third', '三等奖', '纪念邮册一本', 111, 4),
 (4, 'Fourth', '四等奖', '麦兜钥匙扣一个', 0, 10),
 (5, 'Fifth', '五等奖', '纪念邮票一份', 163, 15),
 (6, 'Sixth', '六等奖', '商户代金券一张', 400, 18),
 (7, 'Seventh', '七等奖', '商户代金券一张', 372, 18),
 (8, 'Eighth', '无中奖', '无中奖', 999985829, 35);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `magic_gameconfig`
+--
+
+CREATE TABLE IF NOT EXISTS `magic_gameconfig` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `varname` varchar(80) NOT NULL,
+  `info` varchar(80) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `magic_gameconfig`
+--
+
+INSERT INTO `magic_gameconfig` (`id`, `varname`, `info`, `value`) VALUES
+(1, 'cfg_game_star_time', '活动开始时间(格式 2014-01-23 08:00:00)', '2014-09-12 09:00:00'),
+(2, 'cfg_game_end_time', '活动结束时间(格式 2014-01-23 08:00:00)', '2014-10-22 09:00:00');
 
 -- --------------------------------------------------------
 
@@ -1823,11 +1867,6 @@ CREATE TABLE IF NOT EXISTS `magic_sn` (
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `magic_sn`
---
-
 
 -- --------------------------------------------------------
 
@@ -6583,3 +6622,7 @@ INSERT INTO `magic_useraddorder` (`aid`, `prizeid`, `sn_code`, `joindate`) VALUE
 (2337, 7, 'JBA4XQR58N8RVB2', '2015-03-05 14:50:48'),
 (2330, 6, 'ZQRDZA9FUMMOBQG', '2015-03-05 14:50:58'),
 (2336, 5, 'YC00N1XNVO1JMCE', '2015-03-05 14:50:58');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

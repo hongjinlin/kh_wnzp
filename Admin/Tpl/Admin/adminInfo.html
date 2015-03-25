@@ -1,0 +1,78 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+<script>
+			
+			function del()
+			{
+			    if(confirm("确定要删除吗？"))
+			    {
+			        return true;
+			    }
+			    else
+			    {
+			        return false;
+			    }
+			}
+			
+			$(function(){
+			
+				//提交表单
+				$('#search').click(function(){
+					$('form[name="searchAdminForm"]').submit();
+				});
+			});
+			
+			
+		</script>
+		
+	<div class="diywap_right">
+
+		<div class="well well-sm">管理员列表</div>
+					
+					<form  name="searchAdminForm" action="__APP__/Admin/searchAdmin"  method="get" >
+		<div>
+		
+			管理员名称:<input type='text' name='username' value="<{$_GET['username']}>"/>
+			 		 
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+		</div>
+		</form>
+		</br>
+		
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>序号</th>
+				<th>管理员名称</th>
+				<th>权限级别</th>
+				<th>操作</th>
+			</tr>
+			<volist name='data' id='vo'>
+				<tr class="active">
+					<td><{$i}></td>
+					<td><{$vo.username}></td>
+					<td><{$vo.role}></td>
+					<td>
+						
+						<if condition="$vo.role eq 'level_1_admin'">不可删除
+					    <else /><a href="__APP__/Admin/doDel/id/<{$vo.id}>" onclick='return del();'>删除</a></td>
+						</if>
+						
+				</tr>
+			</volist>
+
+		</table>
+		
+		</br>
+		<div style="text-align:center;"><{$page}></div>
+
+			</div>
+
+		
+
+</div>
+
+</body>
+
+</html>

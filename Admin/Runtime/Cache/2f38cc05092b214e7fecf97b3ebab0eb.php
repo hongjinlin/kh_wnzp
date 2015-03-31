@@ -34,7 +34,7 @@
 		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 
 			<a href="http://www.wayhu.com"  target="_black"><img class="img-rounded" src="__PUBLIC__/Images/bot_logo.png" /></a>
-			<p style="text-align:right;margin-top:-53px;color:white;">拼图游戏后台欢迎你 <<?php echo (session('username')); ?>>
+			<p style="text-align:right;margin-top:-53px;color:white;">拼图游戏后台欢迎你 <?php echo (session('username')); ?>
 			
 			<a href="__APP__/Index/home"  class="btn btn-default navbar-btn btn-group-lg">后台首页</a>
 			
@@ -61,10 +61,7 @@
 					商品管理  <span class="glyphicon  glyphicon-arrow-down"></span></a>
 				</h4>
 					<div id="collapseOne" class="panel-collapse collapse  
-					<?php  if(strstr(__SELF__, 'addGoodsType')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">
-				<a href="__APP__/GoodsType/addGoodsType" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品类别</a>
-				<a href="__APP__/GoodsType/goodsTypeInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品类别列表</a>
-				<a href="__APP__/Goods/addGoods" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品</a>
+					<?php  if(strstr(__SELF__, 'addGoodsType')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">				
 				<a href="__APP__/Goods/goodsInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品列表</a>
 				
 				</div><?php endif; ?>
@@ -157,10 +154,10 @@
 					
 					<form  name="searchExchangeForm" action="__APP__/User/searchExchange"  method="get" >
 		<div>
-			开始时间:<input type="text" id="startdate" name="startdate" onclick="return Calendar('startdate');" value="<<?php echo ($_GET['startdate']); ?>>" class="text" style="width:85px;"/>
-			结束时间:<input type="text" id="enddate" onclick="return Calendar('enddate');" value="<<?php echo ($_GET['enddate']); ?>>" name="enddate" class="text" style="width:85px;"/>
-			用户名称:<input type='text' name='username' id="username" value="<<?php echo ($_GET['username']); ?>>"/>
-			用户手机: <input type='text' name='userphone' id="userphone" value="<<?php echo ($_GET['userphone']); ?>>"/>
+			开始时间:<input type="text" id="startdate" name="startdate" onclick="return Calendar('startdate');" value="<?php echo ($_GET['startdate']); ?>" class="text" style="width:85px;"/>
+			结束时间:<input type="text" id="enddate" onclick="return Calendar('enddate');" value="<?php echo ($_GET['enddate']); ?>" name="enddate" class="text" style="width:85px;"/>
+			用户名称:<input type='text' name='username' id="username" value="<?php echo ($_GET['username']); ?>"/>
+			用户手机: <input type='text' name='userphone' id="userphone" value="<?php echo ($_GET['userphone']); ?>"/>
 			 		 
 			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
 			<div class="btn btn-primary btn-lg" id="exportData">导出数据</div>
@@ -178,18 +175,18 @@
 				<th>操作管理员</th>
 			</tr>
 			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="active">
-					<td><<?php echo ($vo["exchangedatetime"]); ?>></td>
-					<td><<?php echo ($vo["username"]); ?>></td>
-					<td><<?php echo ($vo["userphone"]); ?>></td>
-					<td><<?php echo ($vo["score"]); ?>></td>
-					<td><<?php echo ($vo["exchangenote"]); ?>></td>
-					<td><<?php echo ($vo["operationadmin"]); ?>></td>
+					<td><?php echo ($vo["exchangedatetime"]); ?></td>
+					<td><?php echo ($vo["username"]); ?></td>
+					<td><?php echo ($vo["userphone"]); ?></td>
+					<td><?php echo ($vo["score"]); ?></td>
+					<td><?php echo ($vo["exchangenote"]); ?></td>
+					<td><?php echo ($vo["operationadmin"]); ?></td>
 				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 
 		</table>
 		
 		</br>
-		<div style="text-align:center;"><<?php echo ($page); ?>></div>
+		<div style="text-align:center;"><?php echo ($page); ?></div>
 
 			</div>
 

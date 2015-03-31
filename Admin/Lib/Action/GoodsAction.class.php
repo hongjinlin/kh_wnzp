@@ -18,33 +18,37 @@
 			
 			$where=" where 1=1";
 			
-			if(!empty($_GET['goodstypename'])){
-				$where.= " and t.goodstypename like '%".$_GET['goodstypename']."%'";
+			if(!empty($_GET['praisename'])){
+				$where.= " and praisename like '%".$_GET['praisename']."%'";
 			
 			}
-			if(!empty($_GET['goodstitle'])){
-				$where.= " and g.goodstitle like '%".$_GET['goodstitle']."%'";
+			if(!empty($_GET['praisecontent'])){
+				$where.= " and praisecontent like '%".$_GET['praisecontent']."%'";
 			}
 				
-			$queryStr ="select g.id as id,g.goodstitle as goodstitle ,g.goodscontent as goodscontent,g.goodspic as goodspic,t.goodstypename as goodstypename from tp_goods g join tp_goodstype t on g.goodstypeid=t.id ".$where." order by g.id desc";
+			$queryStr ="select * from magic_config".$where." order by id desc";
 			
 			$Model = new Model(); // 实例化一个model对象 没有对应任何数据表
 			
 			$queryResult = $Model->query($queryStr);
 			
 			if($queryResult!=null){
-				$parameter = 'goodstypename='.urlencode($_GET['goodstypename']).'&goodstitle='.urlencode($_GET['goodstitle']);
+				$parameter = 'praisename='.urlencode($_GET['praisename']).'&praisecontent='.urlencode($_GET['praisecontent']);
 					
 				import('ORG.Util.Page');// 导入分页类
 				$count      = count($queryResult);// 查询满足要求的总记录数
 				$Page       = new Page($count,C('GOODSPOINT_PAGE_COUNT'),$parameter);// 实例化分页类 传入总记录数和每页显示的记录数
 				$show       = $Page->show();// 分页显示输出
 				// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-			
-				$queryStr1 ="select g.id as id,g.goodstitle as goodstitle ,g.goodscontent as goodscontent,g.goodspic as goodspic,t.goodstypename as goodstypename from tp_goods g join tp_goodstype t on g.goodstypeid=t.id ".$where." order by g.id desc";
+			     
+				$queryStr1 ="select * from magic_config".$where." order by id desc";
 				$queryStr1.=" limit ".$Page->firstRow.",".$Page->listRows;
-			
-				$list = $Model->query($queryStr1);
+                $list = $Model->query($queryStr1);
+
+			     $GoodsConfig=M('Config');
+                $ChanceCount = $GoodsConfig->sum('chance');	
+
+                $this->assign('ChanceCount',$ChanceCount);
 				$this->assign('data',$list);// 赋值数据集
 				$this->assign('page',$show);// 赋值分页输出
 			
@@ -101,13 +105,11 @@
 		}
 		
 		public function doUpdate(){
-			$m=M('Goods');
+			$m=M('Config');
 			$data['id']=$_POST['id'];
-			$data['goodstitle']=$_POST['goodstitle'];
-			$data['goodspic']=$_POST['goodspic'];
-			$data['goodscontent']=$_POST['goodscontent'];
-			$data['goodslink']=$_POST['goodslink'];
-			$data['goodstypeid']=$_POST['goodstypeid'];
+			
+			$data['praisenumber']=$_POST['praisenumber'];
+			$data['chance']=$_POST['chance'];
 			
 			$count=$m->save($data);
 			if($count>0){

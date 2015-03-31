@@ -142,8 +142,8 @@
 					<form  name="searchGoodsForm" action="__APP__/Goods/searchGoods"  method="get" >
 		<div>
 		
-			商品类别名称:<input type='text' name='goodstypename' value="<?php echo ($_GET['goodstypename']); ?>"/>
-			商品名称: <input type='text' name='goodstitle' value="<?php echo ($_GET['goodstitle']); ?>"/>
+			奖项名字:<input type='text' name='praisename' value="<?php echo ($_GET['praisename']); ?>"/>
+			奖项内容: <input type='text' name='praisecontent' value="<?php echo ($_GET['praisecontent']); ?>"/>
 			 		 
 			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
 		</div>

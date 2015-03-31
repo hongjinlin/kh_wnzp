@@ -110,55 +110,59 @@
 			
 		</div>	
 
-	<script>
+
+	<div class="diywap_right">
+
+		<div class="well well-sm">兑换礼品</div>
+
+
+			<script>	
 			
 			$(function(){
 				$('#save').click(function(){
-					$('form[name="myForm"]').submit();
+					if(confirm("确定要执行兑奖操作吗？"))
+				    {
+				        $('form[name="myForm"]').submit();
+				    }
+				    else
+				    {
+				        return false;
+				    }
+					
 				});
 			});
 		</script>
-	<div class="diywap_right">
-		<form action='__APP__/Config/updateConfig' method='post' name='myForm' enctype='multipart/form-data'>
-		<div class="well well-sm"><?php echo ($configTitle); ?></div>
-		<table class="table table-hover table-bordered">
-			<tr>
-				<th>参数说明</th>
-				<th>参数值</th>
-				<th>变量名</th>
-			</tr>
-			
-			
-			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo["valuetype"] == 'input' ): ?><tr class="active">
-					<td><?php echo ($vo["info"]); ?></td>
-					<td><input type='hidden' name="data[<?php echo ($i); ?>][id]" value="<?php echo ($vo["id"]); ?>"/><input type='text'  style="width:550px"  name="data[<?php echo ($i); ?>][value]" value="<?php echo ($vo["value"]); ?>"/></td>
-					<td><?php echo ($vo["varname"]); ?></td>
-				</tr>
-		    <?php elseif($vo["valuetype"] == 'textarea'): ?>
-				<tr class="active">
-					<td><?php echo ($vo["info"]); ?></td>
-					<td><input type='hidden' name="data[<?php echo ($i); ?>][id]" value="<?php echo ($vo["id"]); ?>"/><textarea rows="10" cols="70" name="data[<?php echo ($i); ?>][value]" ><?php echo ($vo["value"]); ?></textarea ></td>
-					<td><?php echo ($vo["varname"]); ?></td>
-				</tr>
-			<?php elseif($vo["valuetype"] == 'upload'): ?>
-				<tr class="active">
-					<td><?php echo ($vo["info"]); ?></td>
-					<td><input type='hidden' name="data[<?php echo ($i); ?>][id]" value="<?php echo ($vo["id"]); ?>"/>
-						<input type='text'  id="postpic" style="width:550px"  name="data[<?php echo ($i); ?>][value]" value="<?php echo ($vo["value"]); ?>" readonly="true"/>
-						<iframe src="__APP__/Index/pcupload" height="35" frameborder="0" scrolling="no" width="400" ></iframe>
+<form class="form-horizontal" action='__APP__/User/doExchange' method="post" name="myForm" />
+			<input type='hidden' name='uid' value="<?php echo ($exchange_user_id); ?>"/>
+			<div class="form-group">
 
-					</td>
-					<td><?php echo ($vo["varname"]); ?></td>
-				</tr>
-			<?php else: ?> none<?php endif; endforeach; endif; else: echo "" ;endif; ?>
-		
-		</table>
-		
-		<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+			 <label for="catename" class="col-sm-2 control-label">兑奖用户:</label>
 
-		</form>
+				 <div class="col-sm-4">
+				 	
+						<?php echo ($exchange_user_phone); ?>
+				 </div>
+
 			</div>
-	
+
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">兑奖备注:</label>
+
+				 <div class="col-sm-4">
+
+					<textarea rows="10" cols="70" name="exchangenote" ></textarea >
+				 </div>
+
+			</div>
+			
+			
+			<div class="btn btn-primary btn-lg" id="save">确认兑奖</div>
+			</form>
+
+			</div>
+
+			</div>
 	</div>
 
 </body>

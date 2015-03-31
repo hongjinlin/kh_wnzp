@@ -135,7 +135,7 @@
 
                  <div class="col-sm-4">
 
-                    <input type="catename" name="goodstitle"  class="form-control" readonly="true" value="<?php echo ($data["praisefeild"]); ?>">
+                    <input type="catename" name="praisefeild"  class="form-control" readonly="true" value="<?php echo ($data["praisefeild"]); ?>">
 
                  </div>
 
@@ -146,11 +146,11 @@
 
 			<div class="form-group">
 
-			 <label for="catename" class="col-sm-2 control-label">商品名称:</label>
+			 <label for="catename" class="col-sm-2 control-label">奖项名字:</label>
 
 				 <div class="col-sm-4">
 
-					<input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
+					<input type="catename" name="praisename"  class="form-control" readonly="true" value="<?php echo ($data["praisename"]); ?>">
 
 				 </div>
 
@@ -158,11 +158,11 @@
 			
 			<div class="form-group">
 
-             <label for="catename" class="col-sm-2 control-label">商品名称:</label>
+             <label for="catename" class="col-sm-2 control-label">奖项内容:</label>
 
                  <div class="col-sm-4">
 
-                    <input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
+                    <input type="catename" name="praisecontent"  class="form-control" readonly="true" value="<?php echo ($data["praisecontent"]); ?>">
 
                  </div>
 
@@ -170,11 +170,11 @@
 			
 			<div class="form-group">
 
-             <label for="catename" class="col-sm-2 control-label">商品名称:</label>
+             <label for="catename" class="col-sm-2 control-label">奖项库存次数:</label>
 
                  <div class="col-sm-4">
 
-                    <input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
+                    <input type="catename" name="praisenumber"  class="form-control" value="<?php echo ($data["praisenumber"]); ?>">
 
                  </div>
 
@@ -182,11 +182,11 @@
 			
 			<div class="form-group">
 
-             <label for="catename" class="col-sm-2 control-label">商品名称:</label>
-
+             <label for="catename" class="col-sm-2 control-label">本奖项的概率:</label>
+             
                  <div class="col-sm-4">
 
-                    <input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
+                    <input type="catename" name="chance"  class="form-control" value="<?php echo ($data["chance"]); ?>">
 
                  </div>
 

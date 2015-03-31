@@ -6,7 +6,7 @@
 
 			$condition['grouptype']=$_GET['grouptype'];
 
-			$ConfigModel = M('Config');
+			$ConfigModel = M('Gameconfig');
 			$data = $ConfigModel->where($condition)->select();
 			$this->assign('data',$data);
 			

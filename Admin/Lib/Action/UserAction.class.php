@@ -4,40 +4,58 @@
 		
 		public function userInfo(){
 			
-			$User = M('User'); // 实例化User对象
-			import('ORG.Util.Page');// 导入分页类
-			$count      = $User->count();// 查询满足要求的总记录数
-			$Page       = new Page($count,C('USER_PAGE_COUNT'));// 实例化分页类 传入总记录数和每页显示的记录数
-			$show       = $Page->show();// 分页显示输出
-			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-			$list = $User->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-			$this->assign('data',$list);// 赋值数据集
-			$this->assign('page',$show);// 赋值分页输出
-			$this->display(); // 输出模板
+			$queryStr = "select u.id as uid,u.userphone,u.prizetimes,u.is_exchange,c.praisename,a.joindate,c.praisecontent from magic_user as u,magic_useraddorder as a,magic_config as c where u.id=a.aid and a.prizeid=c.id";
+                
+            $model=D();
+            $queryResult=$model->query($queryStr);
+            
+            if($queryResult!=null){
+                import('ORG.Util.Page');// 导入分页类
+                $count = count($queryResult);// 查询满足要求的总记录数
+                $Page = new Page($count,C('SCORE_PAGE_COUNT'));// 实例化分页类 传入总记录数和每页显示的记录数
+                $show = $Page->show();// 分页显示输出
+                // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+                $queryStr1 = $queryStr. " limit ".$Page->firstRow.",".$Page->listRows;
+                
+                $list = $model->query($queryStr1);
+                $this->assign('data',$list);// 赋值数据集
+                $this->assign('page',$show);// 赋值分页输出
+                        
+            }
+            unset($queryResult);
+            $this->display();
 		}
 		
 		public function searchUser(){
-			$map=array();
-			if(!empty($_GET['username'])){
-				$map['username'] = array('like','%'.$_GET['username'].'%');
-			}
-			if(!empty($_GET['userphone'])){
-				$map['userphone'] = array('like','%'.$_GET['userphone'].'%');
-			}
 
-			$parameter = 'username='.urlencode($_GET['username']).'&userphone='.urlencode($_GET['userphone']);
-			
-			$User = M('User'); // 实例化User对象
-			import('ORG.Util.Page');// 导入分页类
-			$count      = $User->where($map)->count();// 查询满足要求的总记录数
-			$Page       = new Page($count,C('USER_PAGE_COUNT'),$parameter);// 实例化分页类 传入总记录数和每页显示的记录数
-			$show       = $Page->show();// 分页显示输出
-			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-			$list = $User->where($map)->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-			$this->assign('data',$list);// 赋值数据集
-			$this->assign('page',$show);// 赋值分页输出
-			$this->display('userInfo'); // 输出模板
-			
+            $where="";
+
+            if(!empty($_GET['userphone'])){
+                $where .= " and u.userphone like '%".$_GET['userphone']."%'"; 
+            }
+
+            $queryStr = "select u.id as uid,u.userphone,u.prizetimes,u.is_exchange,c.praisename,a.joindate,c.praisecontent from magic_user as u,magic_useraddorder as a,magic_config as c where u.id=a.aid and a.prizeid=c.id".$where;
+
+            $model=D();
+            $queryResult=$model->query($queryStr);
+
+            if($queryResult!=null){
+                import('ORG.Util.Page');// 导入分页类
+                $count = count($queryResult);// 查询满足要求的总记录数
+                $parameter = 'userphone='.urlencode($_GET['userphone']);
+                $Page = new Page($count,C('SCORE_PAGE_COUNT'),$parameter);// 实例化分页类 传入总记录数和每页显示的记录数
+                $show = $Page->show();// 分页显示输出
+                // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+                $queryStr1 = $queryStr. " limit ".$Page->firstRow.",".$Page->listRows;
+                
+                $list = $model->query($queryStr1);
+                
+                $this->assign('data',$list);// 赋值数据集
+                $this->assign('page',$show);// 赋值分页输出
+                        
+            }
+            unset($queryResult);
+            $this->display('userInfo');		
 		}
 		
 		/**
@@ -233,9 +251,9 @@
 		public function exchangeGift(){
 			$uid = $_GET['uid'];
 			$User = M('User');
-			$username = $User->where('id='.$uid)->getField('username');
+			$userphone = $User->where('id='.$uid)->getField('userphone');
 
-			$this->assign('exchange_user_name',$username);
+			$this->assign('exchange_user_phone',$userphone);
 			$this->assign('exchange_user_id',$uid);
 			$this->display();
 		}
@@ -264,7 +282,7 @@
 		
 		public function exchangeInfo(){
 				
-			$queryStr ="select u.username as username,u.userphone as userphone,e.exchangedatetime as exchangedatetime,e.exchangenote as exchangenote,e.operationadmin as operationadmin ,s.score as score from tp_user u join tp_exchange e on u.id=e.uid join tp_score s on u.id=s.uid ";
+			$queryStr ="select u.userphone as userphone,e.exchangedatetime as exchangedatetime,e.exchangenote as exchangenote,e.operationadmin as operationadmin ,s.score as score from magic_user u join magic_exchange e on u.id=e.uid ";
 			
 			$Model = new Model(); // 实例化一个model对象 没有对应任何数据表
 			$queryResult = $Model->query($queryStr);

@@ -59,10 +59,7 @@
 					商品管理  <span class="glyphicon  glyphicon-arrow-down"></span></a>
 				</h4>
 					<div id="collapseOne" class="panel-collapse collapse  
-					<?php  if(strstr(__SELF__, 'addGoodsType')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">
-				<a href="__APP__/GoodsType/addGoodsType" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品类别</a>
-				<a href="__APP__/GoodsType/goodsTypeInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品类别列表</a>
-				<a href="__APP__/Goods/addGoods" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品</a>
+					<?php  if(strstr(__SELF__, 'addGoodsType')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">				
 				<a href="__APP__/Goods/goodsInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品列表</a>
 				
 				</div><?php endif; ?>
@@ -114,103 +111,87 @@
 		</div>	
 
 
+	<div class="diywap_right">
 
-		
+		<div class="well well-sm">添加商品类别</div>
 
-<div class="pull-left diywap_right">	
 
-<div class="panel panel-info">
-	  <div class="panel-heading">程序版本信息</div>
-	  <div class="panel-body">
-	    
-		 <div class="row">
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">服务器信息</div>
-				 
+<script>
+			$(function(){
+				$('#save').click(function(){
+					$('form[name="myForm"]').submit();
+				});
+			});
+		</script>
+<form class="form-horizontal" action='__APP__/GoodsType/doAdd' method="post" name="myForm" enctype='multipart/form-data'/>
 
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>PHP版本:</td>
-					<td><?php echo phpversion(); ?></td>
-				</tr>
-				<tr class="warning">
-					<td>操作系统:</td>
-					<td><?php echo PHP_OS; ?></td>
-				</tr>
-				<tr class="success">
-					<td>程序目录:</td>
-					<td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
-				</tr>
-				<tr class="warning">
-					<td>端口号:</td>
-					<td><?php echo $_SERVER['SERVER_PORT'] ; ?></td>
-				</tr>
-				<tr class="active">
-					<td>服务器IP:</td>
-					<td><?php echo $_SERVER['SERVER_ADDR'] ; ?></td>
-				</tr>
-					
-			</table>
-				</div>
-		  </div>
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">程序信息</div>
-				 
+			<div class="form-group">
 
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>程序名称:</td>
-					<td>拼图游戏</td>
-				</tr>
-				<tr class="warning">
-					<td>程序版本:</td>
-					<td>VER1.0</td>
-				</tr>
-				<tr class="success">
-					<td>程序开发者:</td>
-					<td>威虎小王</td>
-				</tr>
-				<tr class="warning">
-					<td>开发者QQ:</td>
-					<td>1599675606</td>
-				</tr>
-				<tr class="active">
-					<td>官方网站:</td>
-					<td><a href="http://www.wayhu.com">www.wayhu.com</a></td>
-				</tr>
-			</table>
-				</div>
-		  </div>
-		  
-		
-		</div>
-	  </div>
+			 <label for="catename" class="col-sm-2 control-label">商品类别名称:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catename" name="goodstypename"  class="form-control" >
+
+				 </div>
+
+			</div>
+			<!--
+
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">商品类别图片:</label>
+
+				 <div class="col-sm-4">
+
+					<input type='file' name='goodstypepic'/>
+
+				 </div>
+
+			</div>
+			 -->
+			<div class="form-group">
+
+			 <label for="catelogo" class="col-sm-2 control-label">商品类别图片:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catelogo" id="postpic"  name="goodstypepic"  readonly= "true" class="form-control" >
+
+						<iframe src="__APP__/Index/pcupload" height="35" frameborder="0" scrolling="no" width="400" ></iframe>
+
+				 </div>
+
+			</div>
+			
+
+			
+
+			<div class="form-group">
+
+			 <label for="class" class="col-sm-2 control-label" >是否显示:</label>
+
+			 <label for="class" >
+
+				<input type="radio" value="0" checked="checked" name="isshow" />不显示
+			</label>
+
+			<label for="class" >
+
+			<input type="radio" value="1" name="isshow" />显示
+
+				</label>
+
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+
+			</form>
+
+			</div>
+
+			</div>
 	</div>
-</div>
 
-
-
-
-
-
-
-
-  
-
-  
-
-</div>
-
-	
-
-	</body>
+</body>
 
 </html>

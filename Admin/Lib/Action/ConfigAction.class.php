@@ -2,11 +2,14 @@
 
 	class ConfigAction extends Action{
 		
-		public function configInfo(){		
+		public function configInfo(){
 
-			$ConfigModel = D('Gameconfig');
-			$data = $ConfigModel->select();
+			$condition['grouptype']=$_GET['grouptype'];
+
+			$ConfigModel = M('Config');
+			$data = $ConfigModel->where($condition)->select();
 			$this->assign('data',$data);
+			
 			$configTitle='';
 			switch($_GET['grouptype']){
 				case 'system':
@@ -30,7 +33,7 @@
 		//更新配置信息
 		public function updateConfig(){
 			
-			$ConfigModel = M('Gameconfig');
+			$ConfigModel = M('Config');
 			
 			foreach($_POST['data'] as $data)
 			{	
@@ -45,4 +48,3 @@
 		
 	}
 ?>
-

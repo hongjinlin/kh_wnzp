@@ -1,0 +1,95 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+<script>
+			
+			function del()
+			{
+			    if(confirm("确定要删除吗？"))
+			    {
+			        return true;
+			    }
+			    else
+			    {
+			        return false;
+			    }
+			}
+			
+			$(function(){
+			
+				//提交表单
+				$('#search').click(function(){
+					$('form[name="searchGoodsTypeForm"]').submit();
+				});
+			});
+			
+			window.onload=function(){
+				var m = document.getElementById('selectResult');
+				 for(i=0;i<=m.options.length;i++)
+				 {  
+				  if(m.options[i].value=="<{$_GET['isshow']}>")
+				  {      
+				   m.options[i].selected=true;   
+				   break;
+				  }
+				 }
+			}
+		</script>
+		
+	<div class="diywap_right">
+
+		<div class="well well-sm">商品类别列表</div>
+					
+					<form  name="searchGoodsTypeForm" action="__APP__/GoodsType/searchGoodsType"  method="get" >
+		<div>
+		
+			商品类别名称:<input type='text' name='goodstypename' value="<{$_GET['goodstypename']}>"/>
+			是否显示: <select name="isshow" id="selectResult">  
+			 		 <option value="">全部</option>  
+			        <option value="1">显示</option> 
+			        <option value="0">不显示</option>   
+			        
+     				</select>  
+			
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+		</div>
+		</form>
+		</br>
+		
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>序号</th>
+				<th>商品类别名称</th>
+				<th>商品类别图片</th>
+				<th>是否显示</th>
+				<th>操作</th>
+			</tr>
+			<volist name='data' id='vo'>
+				<tr class="active">
+					<td><{$i}></td>
+					<td><{$vo.goodstypename}></td>
+					<td><img src="__PUBLIC__/Uploads/<{$vo.goodstypepic}>"  width="400px" height="200px"/></td>
+					<td>
+					  <if condition="$vo.isshow eq 0 ">不显示
+					  <else />显示
+					  </if>
+					</td>
+					<td><a href="__APP__/GoodsType/doDel/id/<{$vo.id}>" onclick='return del();'>删除</a>|<a href="__APP__/GoodsType/modifyGoodsType/id/<{$vo.id}>">修改</a></td>
+				</tr>
+			</volist>
+
+		</table>
+		
+		</br>
+		<div style="text-align:center;"><{$page}></div>
+
+			</div>
+
+		
+
+</div>
+
+</body>
+
+</html>

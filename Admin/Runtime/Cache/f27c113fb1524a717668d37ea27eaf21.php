@@ -32,7 +32,7 @@
 		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 
 			<a href="http://www.wayhu.com"  target="_black"><img class="img-rounded" src="__PUBLIC__/Images/bot_logo.png" /></a>
-			<p style="text-align:right;margin-top:-53px;color:white;">拼图游戏后台欢迎你 <?php echo (session('username')); ?>
+			<p style="text-align:right;margin-top:-53px;color:white;">拼图游戏后台欢迎你 <<?php echo (session('username')); ?>>
 			
 			<a href="__APP__/Index/home"  class="btn btn-default navbar-btn btn-group-lg">后台首页</a>
 			
@@ -54,19 +54,18 @@
 			
 			<div class="list-group" id="accordion">
 			
-				
-				 <h4>
+				<?php if($_SESSION['role']== 'level_1_admin' ): ?><h4>
 					<a class="list-group-item active navbar-link " data-toggle="collapse"  data-parent="#accordion" href="#collapseOne">
 					商品管理  <span class="glyphicon  glyphicon-arrow-down"></span></a>
 				</h4>
 					<div id="collapseOne" class="panel-collapse collapse  
-					<?php  if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">
-				<a href="__APP__/Goods/goodsInfo" class="list-group-item">
-					<span class="glyphicon glyphicon-circle-arrow-right"></span> 奖品设置
-				</a>			
+					<?php  if(strstr(__SELF__, 'addGoodsType')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">
+				<a href="__APP__/GoodsType/addGoodsType" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品类别</a>
+				<a href="__APP__/GoodsType/goodsTypeInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品类别列表</a>
+				<a href="__APP__/Goods/addGoods" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加商品</a>
+				<a href="__APP__/Goods/goodsInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品列表</a>
 				
-				</div>	
-				
+				</div><?php endif; ?>
 
 				<h4>
 				<a class="list-group-item active navbar-link" data-toggle="collapse"  data-parent="#accordion" href="#collapsetwo">用户管理 <span class="glyphicon  glyphicon-arrow-down"></span></a>	
@@ -74,13 +73,14 @@
 				<div id="collapsetwo" class="panel-collapse collapse
 					<?php  if(strstr(__SELF__, 'userInfo')){echo ' in';} if(strstr(__SELF__, 'searchUser')){echo ' in';} if(strstr(__SELF__, 'exchangeGift')){echo ' in';} if(strstr(__SELF__, 'scoreInfo')){echo ' in';} if(strstr(__SELF__, 'searchScore')){echo ' in';} if(strstr(__SELF__, 'modifyScore')){echo ' in';} if(strstr(__SELF__, 'exchangeInfo')){echo ' in';} if(strstr(__SELF__, 'searchExchange')){echo ' in';} ?>				
 				">
-				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户及游戏记录查询</a>		
+				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户记录查询</a>
+				<a href="__APP__/User/scoreInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>游戏成绩查询</a>				
+				<a href="__APP__/User/exchangeInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>兑换记录查询</a>	
 				</div>
 
 				<!--角色判断-->
 
-				
-				<h4>
+				<?php if($_SESSION['role']== 'level_1_admin' ): ?><h4>
 				<a class="list-group-item active navbar-link" data-toggle="collapse"  data-parent="#accordion" href="#collapsethree">配置管理 <span class="glyphicon  glyphicon-arrow-down"></span></a>	
 					</h4>
 				<div id="collapsethree" class="panel-collapse collapse
@@ -101,8 +101,7 @@
 				">
 				<a href="__APP__/Admin/addAdmin" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加管理员</a>					
 				<a href="__APP__/Admin/adminInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>管理员列表</a>
-					</div>
-					
+					</div><?php endif; ?>	
 				
 
 				<a class="list-group-item active navbar-link " href="http://www.wayhu.com">官方网站：www.wayhu.com</a>
@@ -112,8 +111,7 @@
 			</div>
 			
 			
-		</div>
-	
+		</div>	
 
 
 <script>
@@ -147,7 +145,8 @@
 					<form  name="searchUserForm" action="__APP__/User/searchUser"  method="get" >
 		<div>
 		
-			用户手机: <input type='text' name='userphone' id="userphone" value="<?php echo ($_GET['userphone']); ?>"/>
+			用户名称:<input type='text' name='username' id="username" value="<<?php echo ($_GET['username']); ?>>"/>
+			用户手机: <input type='text' name='userphone' id="userphone" value="<<?php echo ($_GET['userphone']); ?>>"/>
 			 		 
 			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
 			<?php if($_SESSION['role']== 'level_1_admin' ): ?><div class="btn btn-primary btn-lg" id="exportData">导出数据</div><?php endif; ?>
@@ -157,26 +156,27 @@
 		
 		<table class="table table-hover table-bordered">
 			<tr>
-				<th>用户ID</th>
+				<th>序号</th>
+				<th>用户名称</th>
 				<th>用户手机</th>
-				<th>游戏次数</th>
-				<th>获得奖项</th>
-				<th>对应奖品</th>
 				<th>注册时间</th>
+				<th>是否兑换</th>
 			</tr>
 			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="active">
-					<td><?php echo ($vo["uid"]); ?></td>
-					<td><?php echo ($vo["userphone"]); ?></td>
-					<td><?php echo ($vo["prizetimes"]); ?></td>
-					<td><?php echo ($vo["praisename"]); ?></td>
-					<td><?php echo ($vo["praisecontent"]); ?></td>
-					<td><?php echo ($vo["joindate"]); ?></td>
+					<td><<?php echo ($i); ?>></td>
+					<td><<?php echo ($vo["username"]); ?>></td>
+					<td><<?php echo ($vo["userphone"]); ?>></td>
+					<td><<?php echo ($vo["regtime"]); ?>></td>
+					<td>
+					    <?php if($vo["is_exchange"] == 0 ): ?><a href="__APP__/User/exchangeGift/uid/<<?php echo ($vo["id"]); ?>>">立即兑换</a>
+					    <?php else: ?>已兑换<?php endif; ?>
+					</td>
 				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 
 		</table>
 		
 		</br>
-		<div style="text-align:center;"><?php echo ($page); ?></div>
+		<div style="text-align:center;"><<?php echo ($page); ?>></div>
 
 			</div>
 

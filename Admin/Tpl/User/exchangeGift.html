@@ -1,0 +1,62 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+	<div class="diywap_right">
+
+		<div class="well well-sm">兑换礼品</div>
+
+
+			<script>	
+			
+			$(function(){
+				$('#save').click(function(){
+					if(confirm("确定要执行兑奖操作吗？"))
+				    {
+				        $('form[name="myForm"]').submit();
+				    }
+				    else
+				    {
+				        return false;
+				    }
+					
+				});
+			});
+		</script>
+<form class="form-horizontal" action='__APP__/User/doExchange' method="post" name="myForm" />
+			<input type='hidden' name='uid' value="<{$exchange_user_id}>"/>
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">兑奖用户:</label>
+
+				 <div class="col-sm-4">
+				 	
+						<{$exchange_user_name}>
+				 </div>
+
+			</div>
+
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">兑奖备注:</label>
+
+				 <div class="col-sm-4">
+
+					<textarea rows="10" cols="70" name="exchangenote" ></textarea >
+				 </div>
+
+			</div>
+			
+			
+			<div class="btn btn-primary btn-lg" id="save">确认兑奖</div>
+			</form>
+
+			</div>
+
+			</div>
+	</div>
+
+</body>
+
+</html>

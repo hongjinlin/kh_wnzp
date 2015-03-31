@@ -1,0 +1,61 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+	<div class="diywap_right">
+
+		<div class="well well-sm">修改成绩</div>
+
+
+			<script>	
+			
+			$(function(){
+				$('#save').click(function(){
+					if(confirm("确定要更新分数吗？"))
+				    {
+				        $('form[name="myForm"]').submit();
+				    }
+				    else
+				    {
+				        return false;
+				    }
+					
+				});
+			});
+		</script>
+<form class="form-horizontal" action='__APP__/User/doScoreModify' method="post" name="myForm" />
+			<input type='hidden' name='id' value="<{$id}>"/>
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">用户名称:</label>
+
+				 <div class="col-sm-4">
+				 	
+						<{$username}>
+				 </div>
+
+			</div>
+
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">用户成绩:</label>
+
+				 <div class="col-sm-4">
+					<input type='text' name="score" value="<{$score}>"/>
+				 </div>
+
+			</div>
+			
+			<div class="btn btn-primary btn-lg" id="save">确认</div>
+			
+			</form>
+
+			</div>
+
+			</div>
+	</div>
+
+</body>
+
+</html>

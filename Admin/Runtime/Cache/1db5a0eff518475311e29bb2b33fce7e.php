@@ -54,19 +54,15 @@
 			
 			<div class="list-group" id="accordion">
 			
-				
-				 <h4>
+				<?php if($_SESSION['role']== 'level_1_admin' ): ?><h4>
 					<a class="list-group-item active navbar-link " data-toggle="collapse"  data-parent="#accordion" href="#collapseOne">
 					商品管理  <span class="glyphicon  glyphicon-arrow-down"></span></a>
 				</h4>
 					<div id="collapseOne" class="panel-collapse collapse  
-					<?php  if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">
-				<a href="__APP__/Goods/goodsInfo" class="list-group-item">
-					<span class="glyphicon glyphicon-circle-arrow-right"></span> 奖品设置
-				</a>			
+					<?php  if(strstr(__SELF__, 'addGoodsType')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">				
+				<a href="__APP__/Goods/goodsInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品列表</a>
 				
-				</div>	
-				
+				</div><?php endif; ?>
 
 				<h4>
 				<a class="list-group-item active navbar-link" data-toggle="collapse"  data-parent="#accordion" href="#collapsetwo">用户管理 <span class="glyphicon  glyphicon-arrow-down"></span></a>	
@@ -74,19 +70,22 @@
 				<div id="collapsetwo" class="panel-collapse collapse
 					<?php  if(strstr(__SELF__, 'userInfo')){echo ' in';} if(strstr(__SELF__, 'searchUser')){echo ' in';} if(strstr(__SELF__, 'exchangeGift')){echo ' in';} if(strstr(__SELF__, 'scoreInfo')){echo ' in';} if(strstr(__SELF__, 'searchScore')){echo ' in';} if(strstr(__SELF__, 'modifyScore')){echo ' in';} if(strstr(__SELF__, 'exchangeInfo')){echo ' in';} if(strstr(__SELF__, 'searchExchange')){echo ' in';} ?>				
 				">
-				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户及游戏记录查询</a>		
+				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户记录查询</a>
+				<a href="__APP__/User/scoreInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>游戏成绩查询</a>				
+				<a href="__APP__/User/exchangeInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>兑换记录查询</a>	
 				</div>
 
 				<!--角色判断-->
 
-				
-				<h4>
+				<?php if($_SESSION['role']== 'level_1_admin' ): ?><h4>
 				<a class="list-group-item active navbar-link" data-toggle="collapse"  data-parent="#accordion" href="#collapsethree">配置管理 <span class="glyphicon  glyphicon-arrow-down"></span></a>	
 					</h4>
 				<div id="collapsethree" class="panel-collapse collapse
 					<?php  if(strstr(__SELF__, 'system')){echo ' in';} if(strstr(__SELF__, 'game')){echo ' in';} if(strstr(__SELF__, 'weixin')){echo ' in';} ?>				
-				">									
-				<a href="__APP__/Config/configInfo/grouptype/game"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 活动配置</a>			
+				">
+				<a href="__APP__/Config/configInfo/grouptype/system" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 系统配置</a>					
+				<a href="__APP__/Config/configInfo/grouptype/game"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 活动配置</a>
+				<a href="__APP__/Config/configInfo/grouptype/weixin" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 微信配置</a>
 				
 					</div>
 				
@@ -99,8 +98,7 @@
 				">
 				<a href="__APP__/Admin/addAdmin" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 添加管理员</a>					
 				<a href="__APP__/Admin/adminInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>管理员列表</a>
-					</div>
-					
+					</div><?php endif; ?>	
 				
 
 				<a class="list-group-item active navbar-link " href="http://www.wayhu.com">官方网站：www.wayhu.com</a>
@@ -110,8 +108,7 @@
 			</div>
 			
 			
-		</div>
-	
+		</div>	
 
 <script>
 			
@@ -140,30 +137,39 @@
 		
 	<div class="diywap_right">
 
-		<div class="well well-sm">奖品列表</div>
+		<div class="well well-sm">商品列表</div>
 					
-
-		</br>
+					<form  name="searchGoodsForm" action="__APP__/Goods/searchGoods"  method="get" >
+		<div>
 		
+			商品类别名称:<input type='text' name='goodstypename' value="<?php echo ($_GET['goodstypename']); ?>"/>
+			商品名称: <input type='text' name='goodstitle' value="<?php echo ($_GET['goodstitle']); ?>"/>
+			 		 
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+		</div>
+		</form>
+		</br>
+		<?php if($ChanceCount != 100): ?><p><font color="red"><b>奖项概率总和应为 “100” ，现为 “<?php echo ($ChanceCount); ?>”</b></font></p>
+            <?php else: ?>
+                <p>奖项概率总和应为 “100” ，现为 “<?php echo ($ChanceCount); ?>”</p><?php endif; ?>
 		<table class="table table-hover table-bordered">
 			<tr>
-				<th>ID</th>
+				<th>序号</th>
 				<th>奖项标示字段</th>
 				<th>奖项名字</th>
 				<th>奖项内容</th>
-				<th>奖项库存</th>
-				<th>本奖项概率<br/>(注意：所有奖项概率和为100)</th>
+                <th>奖项库存次数</th>
+                <th>本奖项的概率</th>
 				<th>操作</th>
 			</tr>
 			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="active">
-					<td><?php echo ($vo["id"]); ?></td>
+					<td><?php echo ($i); ?></td>
 					<td><?php echo ($vo["praisefeild"]); ?></td>
-					<td width="200px"><?php echo ($vo["praisename"]); ?></td>
-					<td width="250px"><?php echo ($vo["praisecontent"]); ?></td>
-					<td width="250px"><?php echo ($vo["praisenumber"]); ?></td>
-					<td width="200px"><?php echo ($vo["chance"]); ?></td>
-					
-					<td width="100px"><a href="__APP__/Goods/modifyGoods/id/<?php echo ($vo["id"]); ?>">修改</a></td>
+					<td width="150px"><?php echo ($vo["praisename"]); ?></td>
+					<td width="200px"><?php echo ($vo["praisecontent"]); ?></td>
+					<td><?php echo ($vo["praisenumber"]); ?></td>
+					<td><?php echo ($vo["chance"]); ?></td>
+					<td><a href="__APP__/Goods/modifyGoods/id/<?php echo ($vo["id"]); ?>">修改</a></td>
 				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 
 		</table>

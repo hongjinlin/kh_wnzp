@@ -1,0 +1,104 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+	<div class="diywap_right">
+
+		<div class="well well-sm">添加商品</div>
+
+
+<script>
+			$(function(){
+				$('#save').click(function(){
+					$('form[name="myForm"]').submit();
+				});
+			});
+		</script>
+<form class="form-horizontal" action='__APP__/Goods/doAdd' method="post" name="myForm" enctype='multipart/form-data'/>
+			
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">选择商品类别:</label>
+
+				 <div class="col-sm-4">
+
+					<select name="goodstypeid" id="selectGoodsType">  
+						<volist name="goodsTypeList" id="vo">   
+						<option value="<{$vo.id}>">   
+						<{$vo.goodstypename}>
+						</option>
+						</volist>
+     				</select> 
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">商品名称:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catename" name="goodstitle"  class="form-control" >
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+				<label for="infodesc" class="col-sm-2 control-label">商品描述:</label>
+
+				 <div class="col-sm-4">
+
+				<textarea class="form-control" rows="3" name="goodscontent"/></textarea>
+
+				</div>
+
+			
+
+			</div>
+			
+			
+			
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">商品图片（尺寸240*240）:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catelogo" id="postpic"  name="goodspic"  readonly= "true" class="form-control" >
+
+						<iframe src="__APP__/Index/pcupload" height="35" frameborder="0" scrolling="no" width="400" ></iframe>
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">跳转链接:</label>
+
+				 <div class="col-sm-4">
+
+					<input type='catename' class="form-control"  name='goodslink'/>
+
+				 </div>
+
+			</div>
+			
+			
+			<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+
+			</form>
+
+			</div>
+
+			</div>
+	</div>
+
+</body>
+
+</html>

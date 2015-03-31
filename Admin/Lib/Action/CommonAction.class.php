@@ -2,7 +2,8 @@
 	class CommonAction extends Action{
 		public function _initialize(){
    		// 初始化的时候检查用户权限
-   			if(!isset($_SESSION['username']) || $_SESSION['username']==''){
+   			if(!isset($_SESSION['username']) || $_SESSION['username']==''||
+   					!isset($_SESSION['USER_AUTH_KEY']) || $_SESSION['USER_AUTH_KEY']!=C('USER_AUTH_KEY')){
 					
 				$this->redirect('Login/login');
 			}

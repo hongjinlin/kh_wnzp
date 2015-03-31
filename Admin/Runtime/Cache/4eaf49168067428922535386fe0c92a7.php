@@ -1,4 +1,6 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?>
+<script type="text/javascript" src="__PUBLIC__/Js/showdate.js"></script>
+<!DOCTYPE html>
 
 <html>
 
@@ -114,103 +116,90 @@
 		</div>	
 
 
-
-		
-
-<div class="pull-left diywap_right">	
-
-<div class="panel panel-info">
-	  <div class="panel-heading">程序版本信息</div>
-	  <div class="panel-body">
-	    
-		 <div class="row">
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">服务器信息</div>
-				 
-
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>PHP版本:</td>
-					<td><?php echo phpversion(); ?></td>
-				</tr>
-				<tr class="warning">
-					<td>操作系统:</td>
-					<td><?php echo PHP_OS; ?></td>
-				</tr>
-				<tr class="success">
-					<td>程序目录:</td>
-					<td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
-				</tr>
-				<tr class="warning">
-					<td>端口号:</td>
-					<td><?php echo $_SERVER['SERVER_PORT'] ; ?></td>
-				</tr>
-				<tr class="active">
-					<td>服务器IP:</td>
-					<td><?php echo $_SERVER['SERVER_ADDR'] ; ?></td>
-				</tr>
+<script>
+				$(function(){
+				
+				//提交表单
+				$('img.search').click(function(){
+					$('form[name="searchScoreForm"]').submit();
+				});
+				
+				$('#exportData').click(function(){
 					
-			</table>
-				</div>
-		  </div>
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">程序信息</div>
-				 
+					var startdate='blank';
+					var enddate='blank';
+					var username='blank';
+					var userphone='blank';
+					
+					if($("#startdate").val()!=''){
+						startdate =$("#startdate").val();
+					}
+					
+					if($("#enddate").val()!=''){
+						enddate =$("#enddate").val();
+					}
+					
+					if($("#username").val()!=''){
+						username =$("#username").val();
+					}
+					
+					if($("#userphone").val()!=''){
+						userphone =$("#userphone").val();
+					}
 
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>程序名称:</td>
-					<td>拼图游戏</td>
-				</tr>
-				<tr class="warning">
-					<td>程序版本:</td>
-					<td>VER1.0</td>
-				</tr>
-				<tr class="success">
-					<td>程序开发者:</td>
-					<td>威虎小王</td>
-				</tr>
-				<tr class="warning">
-					<td>开发者QQ:</td>
-					<td>1599675606</td>
-				</tr>
-				<tr class="active">
-					<td>官方网站:</td>
-					<td><a href="http://www.wayhu.com">www.wayhu.com</a></td>
-				</tr>
-			</table>
-				</div>
-		  </div>
-		  
-		
+					window.location.href = "__APP__/User/exportScoreData/startdate/"+startdate+"/enddate/"+enddate+"/username/"+username+"/userphone/"+userphone;
+				});
+			});
+		</script>		
+	<div class="diywap_right">
+
+		<div class="well well-sm">游戏成绩查询</div>
+					
+					<form  name="searchScoreForm" action="__APP__/User/searchScore"  method="get" >
+		<div>
+			开始时间:<input type="text" id="startdate" name="startdate" onclick="return Calendar('startdate');" value="<<?php echo ($_GET['startdate']); ?>>" class="text" style="width:85px;"/>
+			结束时间:<input type="text" id="enddate" onclick="return Calendar('enddate');" value="<<?php echo ($_GET['enddate']); ?>>" name="enddate" class="text" style="width:85px;"/>
+			用户名称:<input type='text' name='username' id="username" value="<<?php echo ($_GET['username']); ?>>"/>
+			用户手机: <input type='text' name='userphone' id="userphone" value="<<?php echo ($_GET['userphone']); ?>>"/>
+			 		 
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+			<?php if($_SESSION['role']== 'level_1_admin' ): ?><div class="btn btn-primary btn-lg" id="exportData">导出数据</div><?php endif; ?>
 		</div>
-	  </div>
-	</div>
+		</form>
+		</br>
+		
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>游戏时间</th>
+				<th>用户名称</th>
+				<th>用户手机</th>
+				<th>用户成绩(秒)</th>
+				<th>是否兑换</th>
+				<?php if($_SESSION['role']== 'level_1_admin' ): ?><th>操作</th><?php endif; ?>
+			</tr>
+			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="active">
+					<td><<?php echo ($vo["joindate"]); ?>></td>
+					<td><<?php echo ($vo["username"]); ?>></td>
+					<td><<?php echo ($vo["userphone"]); ?>></td>
+					<td><<?php echo ($vo["score"]); ?>></td>
+					<td>
+					    <?php if($vo["is_exchange"] == 0 ): ?><a href="__APP__/User/exchangeGift/uid/<<?php echo ($vo["uid"]); ?>>">立即兑换</a>
+					    <?php else: ?>已兑换<?php endif; ?>
+					</td>
+					<?php if($_SESSION['role']== 'level_1_admin' ): ?><td><a href="__APP__/User/modifyScore/id/<<?php echo ($vo["id"]); ?>>/username/<<?php echo ($vo["username"]); ?>>/score/<<?php echo ($vo["score"]); ?>>">修改分数</a></td><?php endif; ?>
+				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+
+		</table>
+		
+		</br>
+		<div style="text-align:center;"><<?php echo ($page); ?>></div>
+
+			</div>
+
+		
+
 </div>
 
-
-
-
-
-
-
-
-  
-
-  
-
-</div>
-
-	
-
-	</body>
+</body>
 
 </html>

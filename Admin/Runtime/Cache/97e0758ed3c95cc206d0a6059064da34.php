@@ -54,19 +54,15 @@
 			
 			<div class="list-group" id="accordion">
 			
-				
-				 <h4>
+				<?php if($_SESSION['role']== 'level_1_admin' ): ?><h4>
 					<a class="list-group-item active navbar-link " data-toggle="collapse"  data-parent="#accordion" href="#collapseOne">
 					商品管理  <span class="glyphicon  glyphicon-arrow-down"></span></a>
 				</h4>
 					<div id="collapseOne" class="panel-collapse collapse  
-					<?php  if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">
-				<a href="__APP__/Goods/goodsInfo" class="list-group-item">
-					<span class="glyphicon glyphicon-circle-arrow-right"></span> 奖品设置
-				</a>			
+					<?php  if(strstr(__SELF__, 'addGoodsType')){echo ' in';} if(strstr(__SELF__, 'goodsTypeInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoodsType')){echo ' in';} if(strstr(__SELF__, 'searchGoodsType')){echo ' in';} if(strstr(__SELF__, 'addGoods')){echo ' in';} if(strstr(__SELF__, 'goodsInfo')){echo ' in';} if(strstr(__SELF__, 'modifyGoods')){echo ' in';} if(strstr(__SELF__, 'searchGoods')){echo ' in';} ?> ">				
+				<a href="__APP__/Goods/goodsInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span> 商品列表</a>
 				
-				</div>	
-				
+				</div><?php endif; ?>
 
 				<h4>
 				<a class="list-group-item active navbar-link" data-toggle="collapse"  data-parent="#accordion" href="#collapsetwo">用户管理 <span class="glyphicon  glyphicon-arrow-down"></span></a>	
@@ -74,7 +70,9 @@
 				<div id="collapsetwo" class="panel-collapse collapse
 					<?php  if(strstr(__SELF__, 'userInfo')){echo ' in';} if(strstr(__SELF__, 'searchUser')){echo ' in';} if(strstr(__SELF__, 'exchangeGift')){echo ' in';} if(strstr(__SELF__, 'scoreInfo')){echo ' in';} if(strstr(__SELF__, 'searchScore')){echo ' in';} if(strstr(__SELF__, 'modifyScore')){echo ' in';} if(strstr(__SELF__, 'exchangeInfo')){echo ' in';} if(strstr(__SELF__, 'searchExchange')){echo ' in';} ?>				
 				">
-				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户及游戏记录查询</a>		
+				<a href="__APP__/User/userInfo" class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>用户记录查询</a>
+				<a href="__APP__/User/scoreInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>游戏成绩查询</a>				
+				<a href="__APP__/User/exchangeInfo"  class="list-group-item"><span class="glyphicon glyphicon-circle-arrow-right"></span>兑换记录查询</a>	
 				</div>
 
 				<!--角色判断-->
@@ -110,8 +108,7 @@
 			</div>
 			
 			
-		</div>
-	
+		</div>	
 
 
 	<div class="diywap_right">
@@ -134,50 +131,26 @@
 			<input type='hidden' name='id' value="<?php echo ($data["id"]); ?>"/>
 			<div class="form-group">
 
-			 <label for="catename" class="col-sm-2 control-label">ID:</label>
+             <label for="catename" class="col-sm-2 control-label">奖项标示字段:</label>
 
-				 <div class="col-sm-4">
-					 <input type='text'  readonly= "true" class="form-control" value='<?php echo ($data["id"]); ?>'/>
-				 </div>
+                 <div class="col-sm-4">
 
-			</div>
+                    <input type="catename" name="goodstitle"  class="form-control" readonly="true" value="<?php echo ($data["praisefeild"]); ?>">
+
+                 </div>
+
+            </div>
 
 
 			
 
 			<div class="form-group">
 
-				<label for="catename" class="col-sm-2 control-label">奖项标示字段:</label>
+			 <label for="catename" class="col-sm-2 control-label">商品名称:</label>
 
 				 <div class="col-sm-4">
 
-					<input type="catename"  readonly= "true" name="praisefeild"  class="form-control" value="<?php echo ($data["praisefeild"]); ?>">
-
-				 </div>
-
-			</div>
-			
-			<div class="form-group">
-
-				<label for="infodesc" class="col-sm-2 control-label">奖项名字:</label>
-
-				 <div class="col-sm-4">
-
-				<input type="catelogo" id="postpic"  name="praisename"  readonly= "true" value="<?php echo ($data["praisename"]); ?>" class="form-control" >
-
-				</div>
-
-			
-
-			</div>
-			
-			<div class="form-group">
-
-			 <label for="cateurl" class="col-sm-2 control-label">奖项内容:</label>
-
-				 <div class="col-sm-4">
-
-					<input type="catelogo" id="postpic"  name="praisecontent"  readonly= "true" value="<?php echo ($data["praisecontent"]); ?>" class="form-control" >
+					<input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
 
 				 </div>
 
@@ -185,27 +158,39 @@
 			
 			<div class="form-group">
 
-			 <label for="cateurl" class="col-sm-2 control-label">奖项库存次数:</label>
+             <label for="catename" class="col-sm-2 control-label">商品名称:</label>
 
-				 <div class="col-sm-4">
+                 <div class="col-sm-4">
 
-					<input type='catename' name='praisenumber' class="form-control" value="<?php echo ($data["praisenumber"]); ?>"/>
+                    <input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
 
-				 </div>
+                 </div>
 
-			</div>
-
+            </div>
+			
 			<div class="form-group">
 
-			 <label for="cateurl" class="col-sm-2 control-label">本奖项的概率:</label>
+             <label for="catename" class="col-sm-2 control-label">商品名称:</label>
 
-				 <div class="col-sm-4">
+                 <div class="col-sm-4">
 
-					<input type='catename' name='chance' class="form-control" value="<?php echo ($data["chance"]); ?>"/>
+                    <input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
 
-				 </div>
+                 </div>
 
-			</div>
+            </div>
+			
+			<div class="form-group">
+
+             <label for="catename" class="col-sm-2 control-label">商品名称:</label>
+
+                 <div class="col-sm-4">
+
+                    <input type="catename" name="goodstitle"  class="form-control" value="<?php echo ($data["goodstitle"]); ?>">
+
+                 </div>
+
+            </div>
 			
 			
 			<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>

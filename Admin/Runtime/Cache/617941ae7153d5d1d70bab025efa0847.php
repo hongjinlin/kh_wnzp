@@ -114,103 +114,100 @@
 		</div>	
 
 
+	<div class="diywap_right">
 
-		
+		<div class="well well-sm">添加商品</div>
 
-<div class="pull-left diywap_right">	
 
-<div class="panel panel-info">
-	  <div class="panel-heading">程序版本信息</div>
-	  <div class="panel-body">
-	    
-		 <div class="row">
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">服务器信息</div>
-				 
+<script>
+			$(function(){
+				$('#save').click(function(){
+					$('form[name="myForm"]').submit();
+				});
+			});
+		</script>
+<form class="form-horizontal" action='__APP__/Goods/doAdd' method="post" name="myForm" enctype='multipart/form-data'/>
+			
+			<div class="form-group">
 
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>PHP版本:</td>
-					<td><?php echo phpversion(); ?></td>
-				</tr>
-				<tr class="warning">
-					<td>操作系统:</td>
-					<td><?php echo PHP_OS; ?></td>
-				</tr>
-				<tr class="success">
-					<td>程序目录:</td>
-					<td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
-				</tr>
-				<tr class="warning">
-					<td>端口号:</td>
-					<td><?php echo $_SERVER['SERVER_PORT'] ; ?></td>
-				</tr>
-				<tr class="active">
-					<td>服务器IP:</td>
-					<td><?php echo $_SERVER['SERVER_ADDR'] ; ?></td>
-				</tr>
-					
-			</table>
+			 <label for="catename" class="col-sm-2 control-label">选择商品类别:</label>
+
+				 <div class="col-sm-4">
+
+					<select name="goodstypeid" id="selectGoodsType">  
+						<?php if(is_array($goodsTypeList)): $i = 0; $__LIST__ = $goodsTypeList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<<?php echo ($vo["id"]); ?>>">   
+						<<?php echo ($vo["goodstypename"]); ?>>
+						</option><?php endforeach; endif; else: echo "" ;endif; ?>
+     				</select> 
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">商品名称:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catename" name="goodstitle"  class="form-control" >
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+				<label for="infodesc" class="col-sm-2 control-label">商品描述:</label>
+
+				 <div class="col-sm-4">
+
+				<textarea class="form-control" rows="3" name="goodscontent"/></textarea>
+
 				</div>
-		  </div>
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">程序信息</div>
-				 
 
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>程序名称:</td>
-					<td>拼图游戏</td>
-				</tr>
-				<tr class="warning">
-					<td>程序版本:</td>
-					<td>VER1.0</td>
-				</tr>
-				<tr class="success">
-					<td>程序开发者:</td>
-					<td>威虎小王</td>
-				</tr>
-				<tr class="warning">
-					<td>开发者QQ:</td>
-					<td>1599675606</td>
-				</tr>
-				<tr class="active">
-					<td>官方网站:</td>
-					<td><a href="http://www.wayhu.com">www.wayhu.com</a></td>
-				</tr>
-			</table>
-				</div>
-		  </div>
-		  
-		
-		</div>
-	  </div>
+			
+
+			</div>
+			
+			
+			
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">商品图片（尺寸240*240）:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catelogo" id="postpic"  name="goodspic"  readonly= "true" class="form-control" >
+
+						<iframe src="__APP__/Index/pcupload" height="35" frameborder="0" scrolling="no" width="400" ></iframe>
+
+				 </div>
+
+			</div>
+			
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">跳转链接:</label>
+
+				 <div class="col-sm-4">
+
+					<input type='catename' class="form-control"  name='goodslink'/>
+
+				 </div>
+
+			</div>
+			
+			
+			<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+
+			</form>
+
+			</div>
+
+			</div>
 	</div>
-</div>
 
-
-
-
-
-
-
-
-  
-
-  
-
-</div>
-
-	
-
-	</body>
+</body>
 
 </html>

@@ -1,0 +1,89 @@
+<include file="./Admin/Tpl/Index/header.html"/>			
+
+<include file="./Admin/Tpl/Index/left.html"/>	
+
+
+	<div class="diywap_right">
+
+		<div class="well well-sm">添加商品类别</div>
+
+
+<script>
+			$(function(){
+				$('#save').click(function(){
+					$('form[name="myForm"]').submit();
+				});
+			});
+		</script>
+<form class="form-horizontal" action='__APP__/GoodsType/doAdd' method="post" name="myForm" enctype='multipart/form-data'/>
+
+			<div class="form-group">
+
+			 <label for="catename" class="col-sm-2 control-label">商品类别名称:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catename" name="goodstypename"  class="form-control" >
+
+				 </div>
+
+			</div>
+			<!--
+
+			<div class="form-group">
+
+			 <label for="cateurl" class="col-sm-2 control-label">商品类别图片:</label>
+
+				 <div class="col-sm-4">
+
+					<input type='file' name='goodstypepic'/>
+
+				 </div>
+
+			</div>
+			 -->
+			<div class="form-group">
+
+			 <label for="catelogo" class="col-sm-2 control-label">商品类别图片:</label>
+
+				 <div class="col-sm-4">
+
+					<input type="catelogo" id="postpic"  name="goodstypepic"  readonly= "true" class="form-control" >
+
+						<iframe src="__APP__/Index/pcupload" height="35" frameborder="0" scrolling="no" width="400" ></iframe>
+
+				 </div>
+
+			</div>
+			
+
+			
+
+			<div class="form-group">
+
+			 <label for="class" class="col-sm-2 control-label" >是否显示:</label>
+
+			 <label for="class" >
+
+				<input type="radio" value="0" checked="checked" name="isshow" />不显示
+			</label>
+
+			<label for="class" >
+
+			<input type="radio" value="1" name="isshow" />显示
+
+				</label>
+
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg" id="save">保 存</button>
+
+			</form>
+
+			</div>
+
+			</div>
+	</div>
+
+</body>
+
+</html>

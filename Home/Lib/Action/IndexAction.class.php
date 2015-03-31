@@ -42,7 +42,7 @@ class IndexAction extends Action {
 		$cur_datetime= date('Y-m-d H:i:s');
 		$Config = M('Config');
 		$cfg_game_star_time = '2015-03-01 00:00:00';
-		$cfg_game_end_time = '2015-03-09 00:00:00';
+		$cfg_game_end_time = '2015-05-09 00:00:00';
 		
 		if(strtotime($cur_datetime)>strtotime($cfg_game_star_time) && strtotime($cur_datetime)<strtotime($cfg_game_end_time)){
 			

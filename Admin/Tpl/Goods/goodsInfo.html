@@ -29,31 +29,42 @@
 		
 	<div class="diywap_right">
 
-		<div class="well well-sm">奖品列表</div>
+		<div class="well well-sm">商品列表</div>
 					
-
-		</br>
+					<form  name="searchGoodsForm" action="__APP__/Goods/searchGoods"  method="get" >
+		<div>
 		
+			商品类别名称:<input type='text' name='goodstypename' value="<{$_GET['goodstypename']}>"/>
+			商品名称: <input type='text' name='goodstitle' value="<{$_GET['goodstitle']}>"/>
+			 		 
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
+		</div>
+		</form>
+		</br>
+		<if condition="$ChanceCount neq 100">
+                <p><font color="red"><b>奖项概率总和应为 “100” ，现为 “<{$ChanceCount}>”</b></font></p>
+            <else />
+                <p>奖项概率总和应为 “100” ，现为 “<{$ChanceCount}>”</p>
+        </if>
 		<table class="table table-hover table-bordered">
 			<tr>
-				<th>ID</th>
+				<th>序号</th>
 				<th>奖项标示字段</th>
 				<th>奖项名字</th>
 				<th>奖项内容</th>
-				<th>奖项库存</th>
-				<th>本奖项概率<br/>(注意：所有奖项概率和为100)</th>
+                <th>奖项库存次数</th>
+                <th>本奖项的概率</th>
 				<th>操作</th>
 			</tr>
 			<volist name='data' id='vo'>
 				<tr class="active">
-					<td><{$vo.id}></td>
+					<td><{$i}></td>
 					<td><{$vo.praisefeild}></td>
-					<td width="200px"><{$vo.praisename}></td>
-					<td width="250px"><{$vo.praisecontent}></td>
-					<td width="250px"><{$vo.praisenumber}></td>
-					<td width="200px"><{$vo.chance}></td>
-					
-					<td width="100px"><a href="__APP__/Goods/modifyGoods/id/<{$vo.id}>">修改</a></td>
+					<td width="150px"><{$vo.praisename}></td>
+					<td width="200px"><{$vo.praisecontent}></td>
+					<td><{$vo.praisenumber}></td>
+					<td><{$vo.chance}></td>
+					<td><a href="__APP__/Goods/modifyGoods/id/<{$vo.id}>">修改</a></td>
 				</tr>
 			</volist>
 

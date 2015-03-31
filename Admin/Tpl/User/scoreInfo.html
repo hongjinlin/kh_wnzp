@@ -1,3 +1,5 @@
+
+<load href="__PUBLIC__/Js/showdate.js"/>
 <include file="./Admin/Tpl/Index/header.html"/>			
 
 <include file="./Admin/Tpl/Index/left.html"/>	
@@ -8,13 +10,24 @@
 				
 				//提交表单
 				$('img.search').click(function(){
-					$('form[name="searchUserForm"]').submit();
+					$('form[name="searchScoreForm"]').submit();
 				});
 				
 				$('#exportData').click(function(){
 					
+					var startdate='blank';
+					var enddate='blank';
 					var username='blank';
 					var userphone='blank';
+					
+					if($("#startdate").val()!=''){
+						startdate =$("#startdate").val();
+					}
+					
+					if($("#enddate").val()!=''){
+						enddate =$("#enddate").val();
+					}
+					
 					if($("#username").val()!=''){
 						username =$("#username").val();
 					}
@@ -23,17 +36,18 @@
 						userphone =$("#userphone").val();
 					}
 
-					window.location.href = "__APP__/User/exportUserData/username/"+username+"/userphone/"+userphone;
+					window.location.href = "__APP__/User/exportScoreData/startdate/"+startdate+"/enddate/"+enddate+"/username/"+username+"/userphone/"+userphone;
 				});
 			});
 		</script>		
 	<div class="diywap_right">
 
-		<div class="well well-sm">用户记录查询</div>
+		<div class="well well-sm">游戏成绩查询</div>
 					
-					<form  name="searchUserForm" action="__APP__/User/searchUser"  method="get" >
+					<form  name="searchScoreForm" action="__APP__/User/searchScore"  method="get" >
 		<div>
-		
+			开始时间:<input type="text" id="startdate" name="startdate" onclick="return Calendar('startdate');" value="<{$_GET['startdate']}>" class="text" style="width:85px;"/>
+			结束时间:<input type="text" id="enddate" onclick="return Calendar('enddate');" value="<{$_GET['enddate']}>" name="enddate" class="text" style="width:85px;"/>
 			用户名称:<input type='text' name='username' id="username" value="<{$_GET['username']}>"/>
 			用户手机: <input type='text' name='userphone' id="userphone" value="<{$_GET['userphone']}>"/>
 			 		 
@@ -47,24 +61,32 @@
 		
 		<table class="table table-hover table-bordered">
 			<tr>
-				<th>序号</th>
+				<th>游戏时间</th>
 				<th>用户名称</th>
 				<th>用户手机</th>
-				<th>注册时间</th>
+				<th>用户成绩(秒)</th>
 				<th>是否兑换</th>
+				<if condition="$Think.session.role eq 'level_1_admin' ">
+				
+				<th>操作</th>
+				</if>
 			</tr>
 			<volist name='data' id='vo'>
 				<tr class="active">
-					<td><{$i}></td>
+					<td><{$vo.joindate}></td>
 					<td><{$vo.username}></td>
 					<td><{$vo.userphone}></td>
-					<td><{$vo.regtime}></td>
+					<td><{$vo.score}></td>
 					<td>
 					    <if condition="$vo.is_exchange eq 0 ">
-					    	<a href="__APP__/User/exchangeGift/uid/<{$vo.id}>">立即兑换</a>
+					    	<a href="__APP__/User/exchangeGift/uid/<{$vo.uid}>">立即兑换</a>
 					    <else />已兑换
 					    </if>
 					</td>
+					<if condition="$Think.session.role eq 'level_1_admin' ">
+				
+					<td><a href="__APP__/User/modifyScore/id/<{$vo.id}>/username/<{$vo.username}>/score/<{$vo.score}>">修改分数</a></td>
+					</if>
 				</tr>
 			</volist>
 

@@ -113,104 +113,91 @@
 			
 		</div>	
 
-
-
+<script>
+			
+			function del()
+			{
+			    if(confirm("确定要删除吗？"))
+			    {
+			        return true;
+			    }
+			    else
+			    {
+			        return false;
+			    }
+			}
+			
+			$(function(){
+			
+				//提交表单
+				$('#search').click(function(){
+					$('form[name="searchGoodsTypeForm"]').submit();
+				});
+			});
+			
+			window.onload=function(){
+				var m = document.getElementById('selectResult');
+				 for(i=0;i<=m.options.length;i++)
+				 {  
+				  if(m.options[i].value=="<<?php echo ($_GET['isshow']); ?>>")
+				  {      
+				   m.options[i].selected=true;   
+				   break;
+				  }
+				 }
+			}
+		</script>
 		
+	<div class="diywap_right">
 
-<div class="pull-left diywap_right">	
-
-<div class="panel panel-info">
-	  <div class="panel-heading">程序版本信息</div>
-	  <div class="panel-body">
-	    
-		 <div class="row">
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">服务器信息</div>
-				 
-
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>PHP版本:</td>
-					<td><?php echo phpversion(); ?></td>
-				</tr>
-				<tr class="warning">
-					<td>操作系统:</td>
-					<td><?php echo PHP_OS; ?></td>
-				</tr>
-				<tr class="success">
-					<td>程序目录:</td>
-					<td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
-				</tr>
-				<tr class="warning">
-					<td>端口号:</td>
-					<td><?php echo $_SERVER['SERVER_PORT'] ; ?></td>
-				</tr>
-				<tr class="active">
-					<td>服务器IP:</td>
-					<td><?php echo $_SERVER['SERVER_ADDR'] ; ?></td>
-				</tr>
+		<div class="well well-sm">商品类别列表</div>
 					
-			</table>
-				</div>
-		  </div>
-		  
-		   <div class="col-md-6">
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">程序信息</div>
-				 
-
-				  <!-- List group -->
-				<table class="table table-bordered table-hover">
-				<tr class="active">
-					<td>程序名称:</td>
-					<td>拼图游戏</td>
-				</tr>
-				<tr class="warning">
-					<td>程序版本:</td>
-					<td>VER1.0</td>
-				</tr>
-				<tr class="success">
-					<td>程序开发者:</td>
-					<td>威虎小王</td>
-				</tr>
-				<tr class="warning">
-					<td>开发者QQ:</td>
-					<td>1599675606</td>
-				</tr>
-				<tr class="active">
-					<td>官方网站:</td>
-					<td><a href="http://www.wayhu.com">www.wayhu.com</a></td>
-				</tr>
-			</table>
-				</div>
-		  </div>
-		  
+					<form  name="searchGoodsTypeForm" action="__APP__/GoodsType/searchGoodsType"  method="get" >
+		<div>
 		
+			商品类别名称:<input type='text' name='goodstypename' value="<<?php echo ($_GET['goodstypename']); ?>>"/>
+			是否显示: <select name="isshow" id="selectResult">  
+			 		 <option value="">全部</option>  
+			        <option value="1">显示</option> 
+			        <option value="0">不显示</option>   
+			        
+     				</select>  
+			
+			<button type="submit" class="btn btn-primary btn-lg" id="search">查询</button>
 		</div>
-	  </div>
-	</div>
+		</form>
+		</br>
+		
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>序号</th>
+				<th>商品类别名称</th>
+				<th>商品类别图片</th>
+				<th>是否显示</th>
+				<th>操作</th>
+			</tr>
+			<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="active">
+					<td><<?php echo ($i); ?>></td>
+					<td><<?php echo ($vo["goodstypename"]); ?>></td>
+					<td><img src="__PUBLIC__/Uploads/<<?php echo ($vo["goodstypepic"]); ?>>"  width="400px" height="200px"/></td>
+					<td>
+					  <?php if($vo["isshow"] == 0 ): ?>不显示
+					  <?php else: ?>显示<?php endif; ?>
+					</td>
+					<td><a href="__APP__/GoodsType/doDel/id/<<?php echo ($vo["id"]); ?>>" onclick='return del();'>删除</a>|<a href="__APP__/GoodsType/modifyGoodsType/id/<<?php echo ($vo["id"]); ?>>">修改</a></td>
+				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+
+		</table>
+		
+		</br>
+		<div style="text-align:center;"><<?php echo ($page); ?>></div>
+
+			</div>
+
+		
+
 </div>
 
-
-
-
-
-
-
-
-  
-
-  
-
-</div>
-
-	
-
-	</body>
+</body>
 
 </html>

@@ -12,6 +12,7 @@
 			$username=$_POST['username'];
 			$password=$_POST['password'];
 			
+			session('USER_AUTH_KEY',C('USER_AUTH_KEY'));
 			$code=$_POST['code'];
 			if(md5($code)!=$_SESSION['code']){
 				$this->error('验证码不正确');
@@ -20,9 +21,12 @@
 			$user=M('Admin');
 			$where['username']=$username;
 			$where['password']=$password;
-			$arr=$user->field('id')->where($where)->find();
+			$arr=$user->field('id,role')->where($where)->find();
+            //var_dump($arr);exit;
 			if($arr){
-				$_SESSION['username']=$username;		
+				$_SESSION['username']=$username;
+				$_SESSION['role']=$arr['role'];
+				
 				$_SESSION['id']=$arr['id'];
 				$this->success('用户登录成功',U('Index/index'));
 			}else{
@@ -41,4 +45,3 @@
 		
 	}
 ?>
-

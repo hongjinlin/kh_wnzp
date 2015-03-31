@@ -282,7 +282,7 @@
 		
 		public function exchangeInfo(){
 				
-			$queryStr ="select u.userphone as userphone,e.exchangedatetime as exchangedatetime,e.exchangenote as exchangenote,e.operationadmin as operationadmin ,s.score as score from magic_user u join magic_exchange e on u.id=e.uid ";
+			$queryStr ="select u.userphone as userphone,e.exchangedatetime as exchangedatetime,e.exchangenote as exchangenote,e.operationadmin as operationadmin from magic_user u join magic_exchange e on u.id=e.uid ";
 			
 			$Model = new Model(); // 实例化一个model对象 没有对应任何数据表
 			$queryResult = $Model->query($queryStr);
@@ -293,7 +293,7 @@
 				$Page       = new Page($count,C('EXCHANGE_PAGE_COUNT'));// 实例化分页类 传入总记录数和每页显示的记录数
 				$show       = $Page->show();// 分页显示输出
 				// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-				$queryStr1 ="select u.username as username,u.userphone as userphone,e.exchangedatetime as exchangedatetime ,e.exchangenote as exchangenote,e.operationadmin as operationadmin,s.score as score from tp_user u join tp_exchange e on u.id=e.uid join tp_score s on u.id=s.uid order by e.exchangedatetime desc limit ".$Page->firstRow.",".$Page->listRows;
+				$queryStr1 ="select u.userphone as userphone,e.exchangedatetime as exchangedatetime,e.exchangenote as exchangenote,e.operationadmin as operationadmin from magic_user u join magic_exchange e on u.id=e.uid order by e.exchangedatetime desc limit ".$Page->firstRow.",".$Page->listRows;
 				
 				$list = $Model->query($queryStr1);
 				$this->assign('data',$list);// 赋值数据集
